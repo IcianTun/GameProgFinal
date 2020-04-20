@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileEnemy : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
 
@@ -26,17 +26,13 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        EnemyController e = other.collider.GetComponent<EnemyController>();
-        if (e != null)
-        {
-            e.Fix();
-        }
 
+        Debug.Log(other.gameObject);
         Destroy(gameObject);
 
 
         //test
-        Enemy t = other.collider.GetComponent<Enemy>();
+        RubyController t = other.collider.GetComponent<RubyController>();
         if (t != null)
         {
             t.ChangeHealth(-1);

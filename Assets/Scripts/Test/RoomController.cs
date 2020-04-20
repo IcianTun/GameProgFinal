@@ -46,7 +46,7 @@ public class RoomController : MonoBehaviour
                     obj.SetActive(true);
             foreach(GameObject enemy in enemies)
             {
-                EnemyTest e = enemy.GetComponent<EnemyTest>();
+                Enemy e = enemy.GetComponent<Enemy>();
                 if (e!= null)
                 {
                     e.player = collision.gameObject;
@@ -61,7 +61,7 @@ public class RoomController : MonoBehaviour
         {
             foreach (GameObject enemy in enemies)
             {
-                EnemyTest e = enemy.GetComponent<EnemyTest>();
+                Enemy e = enemy.GetComponent<Enemy>();
                 if (e != null)
                 {
                     e.player = null;

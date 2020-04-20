@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyTest : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed;
 
-    public int maxHealth = 5;
-    public float timeInvincible = 2.0f;
+    public int maxHealth;
+    public float timeInvincible;
 
     public int health { get { return currentHealth; } }
 
     //test need to change to private and find in own room
     public GameObject player;
 
-    int currentHealth;
-    bool isInvincible;
-    float invincibleTimer;
+    //protected variable for child class
+    protected int currentHealth;
+    protected bool isInvincible;
+    protected float invincibleTimer;
 
-    Rigidbody2D rigidbody2d;
+    protected Rigidbody2D rigidbody2d;
 
-    Animator animator;
-    Vector2 lookDirection = new Vector2(1, 0);
+    protected Animator animator;
+    protected Vector2 lookDirection = new Vector2(1, 0);
 
-    void Start()
+    protected virtual void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -31,18 +32,25 @@ public class EnemyTest : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void Update()
+    public void Initiate(int hp, float speed, float iframe)
+    {
+        this.maxHealth = hp;
+        this.speed = speed;
+        this.timeInvincible = iframe;
+    }
+
+    protected virtual void Update()
     {
         //ded
         if (currentHealth == 0)
         {
-            animator.SetTrigger("Fixed");
+            //animator.SetTrigger("Fixed");
             Destroy(gameObject);
             return;
             //or
         }
 
-        if (player == null)
+        /*if (player == null)
             return;
 
         //calculate from player pos
@@ -67,7 +75,7 @@ public class EnemyTest : MonoBehaviour
         position = position + move * speed * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
-
+        */
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
