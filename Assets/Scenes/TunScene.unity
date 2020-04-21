@@ -16449,30 +16449,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420031}
     - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
-        type: 3
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: dashSpeed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
-        type: 3}
-      propertyPath: startDashTime
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
-        type: 3}
-      propertyPath: dashEffect
-      value: 
-      objectReference: {fileID: 7900393059466025194, guid: 98459ecd617b36d43bc4c484e88b9d0c,
-        type: 3}
-    - target: {fileID: 2242297921281307505, guid: bf943001054b5ba478e660fa1bd16591,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307517, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}

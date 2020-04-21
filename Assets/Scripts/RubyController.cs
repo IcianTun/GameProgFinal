@@ -5,20 +5,21 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     public float speed = 5.0f;
+    public float dashSpeed = 75f;
 
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
 
+    int currentHealth;
     public int health { get { return currentHealth; } }
+    bool isInvincible;
+    float invincibleTimer;
+
     public GameObject projectilePrefab;
 
     public Camera cam;
 
     Vector2 mousePos;
-
-    int currentHealth;
-    bool isInvincible;
-    float invincibleTimer;
 
     Rigidbody2D rigidbody2d;
     AudioSource audioSource;
@@ -51,14 +52,13 @@ public class RubyController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector2 move = new Vector2(horizontal, vertical);
+        Vector2 move = new Vector2(horizontal, vertical).normalized;
 
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
+            //lookDirection.Normalize();
         }
-
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
@@ -80,11 +80,22 @@ public class RubyController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
-        
+
         /*if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
         }*/
+
+        #region dash
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            Vector2 position2 = rigidbody2d.position;
+            Vector2 right = transform.right;
+
+            position2 = position2 + lookDirection * dashSpeed * Time.deltaTime;
+            rigidbody2d.MovePosition(position2);
+        }
+        #endregion
 
         if (Input.GetKeyDown(KeyCode.X))
         {
