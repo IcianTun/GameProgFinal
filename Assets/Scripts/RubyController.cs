@@ -5,8 +5,6 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float dashSpeed = 75f;
-
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
 
@@ -90,8 +88,6 @@ public class RubyController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             Vector2 position2 = rigidbody2d.position;
-            Vector2 right = transform.right;
-
             position2 = position2 + lookDirection * dashSpeed * Time.deltaTime;
             rigidbody2d.MovePosition(position2);
         }
