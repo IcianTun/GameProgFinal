@@ -14,6 +14,14 @@ public class Enemy : MonoBehaviour
     //test need to change to private and find in own room
     public GameObject player;
 
+    #region tuntst
+    public List<Attack> attackList;
+    public Attack currentAttack; //for debug or select next attack not same as current
+    public bool nextAttackReady = true;
+
+    public Vector2 tstVector2PlayerPos;
+    #endregion
+
     //protected variable for child class
     protected int currentHealth;
     protected bool isInvincible;
@@ -49,9 +57,10 @@ public class Enemy : MonoBehaviour
             return;
             //or
         }
-
-        /*if (player == null)
+        /*
+         if (player == null)
             return;
+
 
         //calculate from player pos
         Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
@@ -82,9 +91,27 @@ public class Enemy : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
+        #region tuntst
+
+        if(player != null)
+        {
+            tstVector2PlayerPos = player.transform.position;
+            if (nextAttackReady && attackList.Count > 0)
+            {
+                nextAttackReady = false;
+                int a = Random.Range(0, attackList.Count);
+                Attack attack = attackList[a];
+                currentAttack = attack;
+                StartCoroutine(attack.Perform(this));
+                //waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
+            }
+        }
+
+        #endregion
+
     }
 
-    public void ChangeHealth(int amount)
+public void ChangeHealth(int amount)
     {
         if (amount < 0)
         {

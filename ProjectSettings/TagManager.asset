@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Word Map
+    uniqueID: 253871837
+    locked: 0
+  - name: World Decoration
+    uniqueID: 3871079913
+    locked: 0
+  - name: Entity
+    uniqueID: 1590298669
+    locked: 0
+  - name: 
+    uniqueID: 3071263181
+    locked: 0
