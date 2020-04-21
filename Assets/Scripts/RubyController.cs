@@ -27,6 +27,13 @@ public class RubyController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
+    //dash test
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    bool dash;
+
+    public GameObject dashEffect; 
 
     // Start is called before the first frame update
     void Start()
@@ -58,9 +65,14 @@ public class RubyController : MonoBehaviour
 
         Vector2 position = rigidbody2d.position;
 
-        position = position + move * speed * Time.deltaTime;
+        position = position + move.normalized * speed * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
+
+        //rigidbody2d.velocity = move.normalized * speed;
+        //rigidbody2d.AddForce(move.normalized * speed);
+
+       
 
         if (isInvincible)
         {
@@ -106,7 +118,26 @@ public class RubyController : MonoBehaviour
             Launch();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero)
+        {
+            dash = true;
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
+        }
+
+        if (dash)
+        {
+            dashTime -= Time.deltaTime;
+            rigidbody2d.AddForce(move.normalized * dashSpeed);
+            //rigidbody2d.velocity = move.normalized * dashSpeed;
+            if (dashTime < 0)
+            {
+                dashTime = startDashTime;
+                dash = false;
+            }
+        }
+
         #endregion
+        
     }
 
     public void ChangeHealth(int amount)
