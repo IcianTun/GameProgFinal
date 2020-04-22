@@ -19,6 +19,7 @@ public class RoomController : MonoBehaviour
     private void Update()
     {
         //dev unlock
+        Debug.Log(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space))
             Lock = false;
 
