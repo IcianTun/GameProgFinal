@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     public float attackTime;
     public float startTimeAttack;
 
-    public Transform attackLocation;
+    public Transform sword;
     public float attackRange;
     public LayerMask enemies;
 
@@ -18,13 +18,20 @@ public class PlayerAttack : MonoBehaviour
     private Animator animator;
     private SpriteRenderer renderer;
 
+    MeleeWeapon melee;
+
+    Vector2 stabPos;
+    Vector2 stabDir;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        renderer = attackLocation.GetComponent<SpriteRenderer>();
+        renderer = sword.GetComponent<SpriteRenderer>();
 
         renderer.enabled = false;
+        melee = sword.GetComponent<MeleeWeapon>();
+        sword.GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     // Update is called once per frame
@@ -42,36 +49,43 @@ public class PlayerAttack : MonoBehaviour
 
         float rad = Mathf.Deg2Rad * angle;
 
-        Vector2 offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad)) * 1;
-
-        attackLocation.position = pos + offset + new Vector2(0,0.5f);
-        attackLocation.rotation = Quaternion.Euler(0, 0, 45 - angle);
+        Vector2 offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
 
         if (Input.GetButton("Fire2") && attackTime<=0)
         {
             attackTime = startTimeAttack;
             animator.SetTrigger("Launch");
-            Collider2D[] damage = Physics2D.OverlapCircleAll(attackLocation.position, attackRange, enemies);
 
-            for (int i = 0; i < damage.Length; i++)
-            {
-                //Destroy(damage[i].gameObject);
-                damage[i].GetComponent<Enemy>().ChangeHealth(-1);
-            }
+            stabPos = mousePos;
+            stabDir = mouseDir;
+
+            animator.SetFloat("Look X", mouseDir.x);
+            animator.SetFloat("Look Y", mouseDir.y);
         }
 
         if(attackTime > 0)
         {
-            renderer.enabled = true;
-            //anim.SetBool("Is_attacking", true);
+            angle = Vector2.Angle(up, stabDir);
 
+            if (pos.x > stabPos.x)
+                angle = 360 - angle;
+
+            rad = Mathf.Deg2Rad * angle;
+
+            offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
+            renderer.enabled = true;
+            sword.GetComponent<PolygonCollider2D>().enabled = true;
+            sword.position = pos + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack,2);
 
             attackTime -= Time.deltaTime;
         }   
         else
         {
-            //anim.SetBool("Is_attacking", false);
+            sword.GetComponent<PolygonCollider2D>().enabled = false;
+
             renderer.enabled = false;
+            sword.position = pos + offset + new Vector2(0, 0.5f);
+            sword.rotation = Quaternion.Euler(0, 0, 45 - angle);
         }
     }
 }

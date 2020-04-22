@@ -18,6 +18,7 @@ public class RubyController : MonoBehaviour
     public Camera cam;
 
     Vector2 mousePos;
+    Vector2 mouseDir;
     Vector2 move;
 
     Rigidbody2D rigidbody2d;
@@ -32,7 +33,22 @@ public class RubyController : MonoBehaviour
     public float startDashTime;
     bool dash;
 
-    public GameObject dashEffect; 
+    public GameObject dashEffect;
+
+    //stab
+    public float attackTime;
+    public float startTimeAttack;
+
+    public Transform sword;
+    public float attackRange;
+    public LayerMask enemies;
+
+    private SpriteRenderer renderer;
+
+    MeleeWeapon melee;
+
+    Vector2 stabPos;
+    Vector2 stabDir;
 
     // Start is called before the first frame update
     void Start()
@@ -43,13 +59,60 @@ public class RubyController : MonoBehaviour
         currentHealth = maxHealth;
 
         audioSource = GetComponent<AudioSource>();
+
+        renderer = sword.GetComponent<SpriteRenderer>();
+
+        melee = sword.GetComponent<MeleeWeapon>();
+        sword.GetComponent<PolygonCollider2D>().enabled = false;
     }
 
     private void Update()
     {
+        mouseDir = (mousePos - rigidbody2d.position).normalized;
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         move = new Vector2(horizontal, vertical).normalized;
+
+        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero)
+        {
+            dash = true;
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Launch();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }
+        }
+
+        if (Input.GetButton("Fire2") && attackTime <= 0)
+        {
+            if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
+            {
+                lookDirection.Set(mouseDir.x, mouseDir.y);
+                lookDirection.Normalize();
+            }
+
+            attackTime = startTimeAttack;
+            animator.SetTrigger("Launch");
+
+            stabPos = mousePos;
+            stabDir = mouseDir;
+        }
+        Stab();
     }
 
     // Update is called once per frame
@@ -96,43 +159,15 @@ public class RubyController : MonoBehaviour
         }
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
-            if (hit.collider != null)
-            {
-                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
-                if (character != null)
-                {
-                    character.DisplayDialog();
-                }
-            }
-        }
 
         #region test
         //test
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Launch();
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero)
-        {
-            dash = true;
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
-        }
 
         if (dash)
         {
-            dashTime -= Time.deltaTime;
-            rigidbody2d.AddForce(move.normalized * dashSpeed);
-            //rigidbody2d.velocity = move.normalized * dashSpeed;
-            if (dashTime < 0)
-            {
-                dashTime = startDashTime;
-                dash = false;
-            }
+            Dash();
         }
 
         #endregion
@@ -160,8 +195,6 @@ public class RubyController : MonoBehaviour
     {
         #region test
         //test attack by mouse
-        Vector2 mouseDir = (mousePos - rigidbody2d.position).normalized;
-
         if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
         {
             lookDirection.Set(mouseDir.x, mouseDir.y);
@@ -175,6 +208,59 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         animator.SetTrigger("Launch");
+    }
+
+    void Dash()
+    {
+        dashTime -= Time.deltaTime;
+        rigidbody2d.AddForce(move.normalized * dashSpeed);
+        //rigidbody2d.velocity = move.normalized * dashSpeed;
+        if (dashTime < 0)
+        {
+            dashTime = startDashTime;
+            dash = false;
+        }
+
+    }
+
+    void Stab()
+    {
+        Vector2 pos = transform.position;
+        Vector2 up = transform.up;
+
+        float angle = Vector2.Angle(up, mouseDir);
+
+        if (pos.x > mousePos.x)
+            angle = 360 - angle;
+
+        float rad = Mathf.Deg2Rad * angle;
+
+        Vector2 offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
+
+        if (attackTime > 0)
+        {
+            angle = Vector2.Angle(up, stabDir);
+
+            if (pos.x > stabPos.x)
+                angle = 360 - angle;
+
+            rad = Mathf.Deg2Rad * angle;
+
+            offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
+            renderer.enabled = true;
+            sword.GetComponent<PolygonCollider2D>().enabled = true;
+            sword.position = pos + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack, 2);
+
+            attackTime -= Time.deltaTime;
+        }
+        else
+        {
+            sword.GetComponent<PolygonCollider2D>().enabled = false;
+
+            renderer.enabled = false;
+            sword.position = pos + offset + new Vector2(0, 0.5f);
+            sword.rotation = Quaternion.Euler(0, 0, 45 - angle);
+        }
     }
 
     public void PlaySound(AudioClip clip)
