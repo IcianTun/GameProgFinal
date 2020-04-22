@@ -46,7 +46,7 @@
   "lock": {
     "com.unity.2d.tilemap.extras": {
       "revision": "HEAD",
-      "hash": "3b136eb3bf8602942510e8f88424f168790788ea"
+      "hash": "40dbbfa7be9c8e3141c1521f6200b22e091b3cec"
     }
   }
 }

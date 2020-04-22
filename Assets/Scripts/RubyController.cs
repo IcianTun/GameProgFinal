@@ -18,6 +18,7 @@ public class RubyController : MonoBehaviour
     public Camera cam;
 
     Vector2 mousePos;
+    Vector2 move;
 
     Rigidbody2D rigidbody2d;
     AudioSource audioSource;
@@ -44,14 +45,16 @@ public class RubyController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        move = new Vector2(horizontal, vertical).normalized;
+    }
 
-        Vector2 move = new Vector2(horizontal, vertical).normalized;
-
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
             lookDirection.Set(move.x, move.y);

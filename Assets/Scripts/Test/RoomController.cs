@@ -5,11 +5,21 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     public Cinemachine.CinemachineConfiner confiner;
-    public bool Lock = false;
+    private bool islock = false;
     public List<GameObject> lockObject;
     public List<GameObject> enemies;
 
     PolygonCollider2D polygon;
+
+    public bool Lock
+    {
+        get { return islock; }
+        set {
+            if (!value)
+                confiner.InvalidatePathCache();
+            islock = value;
+        }
+    }
 
     private void Start()
     {
@@ -19,6 +29,7 @@ public class RoomController : MonoBehaviour
     private void Update()
     {
         //dev unlock
+        Debug.Log(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space))
             Lock = false;
 
