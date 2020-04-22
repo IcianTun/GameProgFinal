@@ -10,6 +10,7 @@ public class NonPlayerCharacter : MonoBehaviour
     public GameObject dialogBox;
     public TMP_Text dialogText;
 
+
     public ConversationNode startConversationNode;
     ConversationNode currentConversationNode;
 
@@ -37,15 +38,19 @@ public class NonPlayerCharacter : MonoBehaviour
 
     public void DisplayDialog()
     {
+        Debug.Log("DisplayDialog is called");
         timerDisplay = displayTime;
         if (!dialogBox.activeInHierarchy)
         {
+            Debug.Log("case1");
             currentConversationNode = startConversationNode;
             dialogBox.SetActive(true);
         } else if(currentConversationNode.nextNode)
         {
+            Debug.Log("case2");
             currentConversationNode = currentConversationNode.nextNode;
         }
+        Debug.Log("set text");
         dialogText.SetText(currentConversationNode.message);
     }
 }

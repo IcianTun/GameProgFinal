@@ -37,6 +37,12 @@ public class Projectile : MonoBehaviour
             e.Fix();
         }
 
+        EnemyRobotController e2 = other.collider.GetComponent<EnemyRobotController>();
+        if (e2 != null)
+        {
+            e2.Fix();
+        }
+
         Destroy(gameObject);
 
 

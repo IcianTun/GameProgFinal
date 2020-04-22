@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757d2a78e0a09148bd64debd8b95781, type: 3}
   m_Name: FixedRobot1
   m_EditorClassIdentifier: 
-  message: afsdasf
+  message: thank you for fixing me!
   nextNode: {fileID: 0}
