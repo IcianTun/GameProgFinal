@@ -5,6 +5,8 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     public Cinemachine.CinemachineConfiner confiner;
+
+    [SerializeField]
     private bool islock = false;
     public List<GameObject> lockObject;
     public List<GameObject> enemies;
@@ -29,7 +31,6 @@ public class RoomController : MonoBehaviour
     private void Update()
     {
         //dev unlock
-        Debug.Log(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.Space))
             Lock = false;
 
@@ -46,11 +47,12 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("player enter");
         if (collision.tag == "Player")
         {
+            Lock = true;
             if (Lock)
                 //test lock camera
-                Debug.Log(collision.gameObject);
                 confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
                 confiner.InvalidatePathCache();
                 foreach (GameObject obj in lockObject)
