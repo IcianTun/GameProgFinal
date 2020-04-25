@@ -11,5 +11,10 @@ public class MeleeWeapon : MonoBehaviour
         {
             e.ChangeHealth(-1);
         }
+        destructibleObject obj = collision.GetComponent<destructibleObject>();
+        if (obj != null)
+        {
+            obj.changeHealth(-1);
+        }
     }
 }

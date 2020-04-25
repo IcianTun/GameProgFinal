@@ -81,24 +81,8 @@ public class RubyController : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire1"))
-        {
             Launch();
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
-            if (hit.collider != null)
-            {
-                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
-                if (character != null)
-                {
-                    character.DisplayDialog();
-                }
-            }
-        }
-
-        if (Input.GetButton("Fire2") && attackTime <= 0)
+        else if (Input.GetButton("Fire2") && attackTime <= 0)
         {
             if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
             {
@@ -113,6 +97,23 @@ public class RubyController : MonoBehaviour
             stabDir = mouseDir;
         }
         Stab();
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Debug.Log("I talk to something");
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                NonPlayerCharacter character = hit.collider.GetComponent<NonPlayerCharacter>();
+                if (character != null)
+                {
+                    Debug.Log("I found a character");
+                    character.DisplayDialog();
+                }
+            }
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -133,11 +134,6 @@ public class RubyController : MonoBehaviour
 
         rigidbody2d.MovePosition(position);
 
-        //rigidbody2d.velocity = move.normalized * speed;
-        //rigidbody2d.AddForce(move.normalized * speed);
-
-       
-
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -145,33 +141,12 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.C))
-        {
-            Launch();
-        }*/
-
-        #region dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Vector2 position2 = rigidbody2d.position;
-            position2 = position2 + lookDirection * dashSpeed * Time.deltaTime;
-            rigidbody2d.MovePosition(position2);
-        }
-        #endregion
-
-
-        #region test
-        //test
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
 
         if (dash)
         {
             Dash();
         }
-
-        #endregion
-        
     }
 
     public void ChangeHealth(int amount)
@@ -193,14 +168,11 @@ public class RubyController : MonoBehaviour
 
     void Launch()
     {
-        #region test
-        //test attack by mouse
         if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
         {
             lookDirection.Set(mouseDir.x, mouseDir.y);
             lookDirection.Normalize();
         }
-        #endregion
 
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
