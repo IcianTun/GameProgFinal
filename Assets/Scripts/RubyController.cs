@@ -135,11 +135,6 @@ public class RubyController : MonoBehaviour
 
         rigidbody2d.MovePosition(position);
 
-        //rigidbody2d.velocity = move.normalized * speed;
-        //rigidbody2d.AddForce(move.normalized * speed);
-
-       
-
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -147,33 +142,12 @@ public class RubyController : MonoBehaviour
                 isInvincible = false;
         }
 
-        /*if (Input.GetKeyDown(KeyCode.C))
-        {
-            Launch();
-        }*/
-
-        #region dash
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            Vector2 position2 = rigidbody2d.position;
-            position2 = position2 + lookDirection * dashSpeed * Time.deltaTime;
-            rigidbody2d.MovePosition(position2);
-        }
-        #endregion
-
-
-        #region test
-        //test
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
 
         if (dash)
         {
             Dash();
         }
-
-        #endregion
-        
     }
 
     public void ChangeHealth(int amount)
