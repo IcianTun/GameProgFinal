@@ -36,6 +36,11 @@ public class Projectile : MonoBehaviour
         {
             e.ChangeHealth(-1);
         }
+        EnemyRobotController e2 = collision.GetComponent<EnemyRobotController>();
+        if (e2 != null)
+        {
+            e2.Fix();
+        }
         Destroy(gameObject);
     }
 }
