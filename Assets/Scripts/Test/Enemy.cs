@@ -105,6 +105,14 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(attack.Perform(this));
                 //waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
             }
+
+            Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
+            Vector2 position = rigidbody2d.position;
+
+            float horizontal = playerPos.x - position.x;
+            float vertical = playerPos.y - position.y;
+
+            lookDirection = new Vector2(horizontal, vertical).normalized;
         }
 
         #endregion
