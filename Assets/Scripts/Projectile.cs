@@ -29,29 +29,13 @@ public class Projectile : MonoBehaviour
         rigidbody2d.AddForce(direction * force);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyController e = other.collider.GetComponent<EnemyController>();
+        Enemy e = collision.GetComponent<Enemy>();
         if (e != null)
         {
-            e.Fix();
+            e.ChangeHealth(-1);
         }
-
-        EnemyRobotController e2 = other.collider.GetComponent<EnemyRobotController>();
-        if (e2 != null)
-        {
-            e2.Fix();
-        }
-
         Destroy(gameObject);
-
-
-        //test
-        Enemy t = other.collider.GetComponent<Enemy>();
-        if (t != null)
-        {
-            t.ChangeHealth(-1);
-        }
-        Debug.Log(other.gameObject);
     }
 }

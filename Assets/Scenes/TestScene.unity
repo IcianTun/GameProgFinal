@@ -763,6 +763,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3229180958611922454, guid: 3fae017b0e9de8644a909b8683f3a2d6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fae017b0e9de8644a909b8683f3a2d6, type: 3}
 --- !u!1 &616179360
@@ -6258,7 +6263,7 @@ GameObject:
   - component: {fileID: 1277152830}
   - component: {fileID: 1277152832}
   - component: {fileID: 1277152831}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TestRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6444,7 +6449,7 @@ GameObject:
   - component: {fileID: 1504930928}
   - component: {fileID: 1504930927}
   - component: {fileID: 1504930926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tilemap (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
