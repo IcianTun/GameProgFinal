@@ -81,9 +81,22 @@ public class RubyController : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire1"))
-        {
             Launch();
+        else if (Input.GetButton("Fire2") && attackTime <= 0)
+        {
+            if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
+            {
+                lookDirection.Set(mouseDir.x, mouseDir.y);
+                lookDirection.Normalize();
+            }
+
+            attackTime = startTimeAttack;
+            animator.SetTrigger("Launch");
+
+            stabPos = mousePos;
+            stabDir = mouseDir;
         }
+        Stab();
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -100,21 +113,7 @@ public class RubyController : MonoBehaviour
             }
         }
 
-        if (Input.GetButton("Fire2") && attackTime <= 0)
-        {
-            if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
-            {
-                lookDirection.Set(mouseDir.x, mouseDir.y);
-                lookDirection.Normalize();
-            }
-
-            attackTime = startTimeAttack;
-            animator.SetTrigger("Launch");
-
-            stabPos = mousePos;
-            stabDir = mouseDir;
-        }
-        Stab();
+        
     }
 
     // Update is called once per frame
@@ -169,14 +168,11 @@ public class RubyController : MonoBehaviour
 
     void Launch()
     {
-        #region test
-        //test attack by mouse
         if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
         {
             lookDirection.Set(mouseDir.x, mouseDir.y);
             lookDirection.Normalize();
         }
-        #endregion
 
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 

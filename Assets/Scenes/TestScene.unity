@@ -5954,7 +5954,7 @@ GameObject:
   - component: {fileID: 1064283920}
   - component: {fileID: 1064283922}
   m_Layer: 13
-  m_Name: Attack1 SummonProjectile (1)
+  m_Name: Attack2 Tackle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5974,6 +5974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executionTime: 3
   attackName: Tackle
+  numberOfCharge: 3
   delayStartTime: 0.3
   dashTime: 0.5
 --- !u!4 &1064283921
@@ -16448,6 +16449,57 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &2076898046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2076898048}
+  - component: {fileID: 2076898047}
+  m_Layer: 13
+  m_Name: Attack3 SeriesOfProjectile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2076898047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076898046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b47de28245d85d4385f2772ccfef9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executionTime: 3
+  attackName: 
+  projectilePrefab: {fileID: 8002005404733687776, guid: cd869a5b46acdb142948e2b88f323a28,
+    type: 3}
+  numberOfProjectile: 2
+  delayStartTime: 1
+  projectileOffset: 1
+  focus: 0
+--- !u!4 &2076898048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076898046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 163849679664705209}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2136483399
 GameObject:
   m_ObjectHideFlags: 0
@@ -16534,6 +16586,7 @@ Transform:
   m_Children:
   - {fileID: 1439051510}
   - {fileID: 1064283921}
+  - {fileID: 2076898048}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17033,7 +17086,8 @@ MonoBehaviour:
   player: {fileID: 0}
   attackList:
   - {fileID: 1064283920}
-  currentAttack: {fileID: 1064283920}
+  - {fileID: 2076898047}
+  currentAttack: {fileID: 2076898047}
   nextAttackReady: 1
   tstVector2PlayerPos: {x: 0, y: 0}
   projectilePrefab: {fileID: 8002005404733687776, guid: cd869a5b46acdb142948e2b88f323a28,
