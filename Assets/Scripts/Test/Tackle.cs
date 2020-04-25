@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tackle : Attack
 {
+    public int numberOfCharge;
     public float delayStartTime;
     public float dashTime;
 
@@ -18,37 +19,34 @@ public class Tackle : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
-        animator = enemyScript.GetComponent<Animator>();
-
-        Vector2 playerPos = enemyScript.player.transform.position;
-        Vector2 enemyPos = enemyScript.transform.position;
-        Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
-
-        animator.SetFloat("Move X", directionToPlayer.x);
-        animator.SetFloat("Move Y", directionToPlayer.y);
-
-        lineRenderer.enabled = true;
-
-        lineRenderer.SetPosition(0, new Vector3(enemyPos.x,enemyPos.y,-1f));
-        lineRenderer.SetPosition(1, new Vector3(playerPos.x, playerPos.y, -1f));
-
-        yield return new WaitForSeconds(delayStartTime);
-
-        float t = 0f;
-        while (t < 1)
+        if (animator == null)
+            animator = enemyScript.GetComponent<Animator>();
+        for (int i = 0; i < numberOfCharge; i++)
         {
-            t += Time.deltaTime / dashTime;
-            enemyScript.transform.position = Vector3.Lerp(enemyPos, playerPos, t);
-            yield return null;
+            Vector2 playerPos = enemyScript.player.transform.position;
+            Vector2 enemyPos = enemyScript.transform.position;
+            Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
+
+            animator.SetFloat("Move X", directionToPlayer.x);
+            animator.SetFloat("Move Y", directionToPlayer.y);
+
+            lineRenderer.enabled = true;
+
+            lineRenderer.SetPosition(0, new Vector3(enemyPos.x, enemyPos.y, -1f));
+            lineRenderer.SetPosition(1, new Vector3(playerPos.x, playerPos.y, -1f));
+
+            yield return new WaitForSeconds(delayStartTime);
+
+            float t = 0f;
+            while (t < 1)
+            {
+                t += Time.deltaTime / dashTime;
+                enemyScript.transform.position = Vector3.Lerp(enemyPos, playerPos, t);
+                yield return null;
+            }
+
+            lineRenderer.enabled = false;
         }
-
-        lineRenderer.enabled = false;
-        //yield return new WaitForSeconds(dashTime);
-
-        //GameObject projectileObject = Instantiate(projectilePrefab, enemyScript.transform.position + directionToPlayer, Quaternion.identity, enemyScript.transform);
-        //ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
-
-        //projectile.Launch(directionToPlayer, 300);
         yield return base.Perform(enemyScript);
     }
 
