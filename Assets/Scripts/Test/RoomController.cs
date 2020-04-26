@@ -5,12 +5,14 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     public Cinemachine.CinemachineConfiner confiner;
+    public Cinemachine.CinemachineVirtualCamera virtualCamera;
 
     [SerializeField]
     private bool islock = false;
     public List<GameObject> lockObject;
     public List<GameObject> enemies;
 
+    public float cameraYSize = 4.0f;
     PolygonCollider2D polygon;
 
     public bool Lock
@@ -37,8 +39,6 @@ public class RoomController : MonoBehaviour
         if (!Lock)
         {
             //test unlock camera
-            confiner.m_BoundingShape2D = polygon;
-            confiner.InvalidatePathCache();
             foreach (GameObject obj in lockObject)
                 obj.SetActive(false);
             Lock = false;
@@ -47,17 +47,20 @@ public class RoomController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("player enter");
+        Debug.Log(collision.gameObject.name);
         if (collision.tag == "Player")
         {
+            Debug.Log("player enter");
+            virtualCamera.m_Lens.OrthographicSize = cameraYSize;
             Lock = true;
             if (Lock)
                 //test lock camera
                 confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
                 confiner.InvalidatePathCache();
+                
                 foreach (GameObject obj in lockObject)
                     obj.SetActive(true);
-            foreach(GameObject enemy in enemies)
+            foreach (GameObject enemy in enemies)
             {
                 Enemy e = enemy.GetComponent<Enemy>();
                 if (e!= null)

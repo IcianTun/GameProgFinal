@@ -24,18 +24,13 @@ public class ProjectileEnemy : MonoBehaviour
         rigidbody2d.AddForce(direction * force);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        Debug.Log(other.gameObject);
-        Destroy(gameObject);
-
-
-        //test
-        RubyController t = other.collider.GetComponent<RubyController>();
+        RubyController t = collision.GetComponent<RubyController>();
         if (t != null)
         {
             t.ChangeHealth(-1);
         }
+        Destroy(gameObject);
     }
 }

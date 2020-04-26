@@ -27,11 +27,7 @@ public class RobotTest : Enemy
             float vertical = playerPos.y - position.y;
 
             lookDirection = new Vector2(horizontal, vertical).normalized;
-
-            //depend on enemy characteristic
-
-            //Attack();
-            //Move();
+            
         }
     }
 

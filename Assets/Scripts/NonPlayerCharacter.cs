@@ -10,6 +10,7 @@ public class NonPlayerCharacter : MonoBehaviour
     public GameObject dialogBox;
     public TMP_Text dialogText;
 
+
     public ConversationNode startConversationNode;
     ConversationNode currentConversationNode;
 
@@ -35,7 +36,7 @@ public class NonPlayerCharacter : MonoBehaviour
         }
     }
 
-    public void DisplayDialog()
+    virtual public void DisplayDialog()
     {
         timerDisplay = displayTime;
         if (!dialogBox.activeInHierarchy)
