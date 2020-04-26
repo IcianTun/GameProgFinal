@@ -8,6 +8,8 @@ public class StepSwitch : MonoBehaviour
     public bool oneTime = false;
     public Sprite normal;
     public Sprite pressed;
+    public bool connectDoor;
+    public GameObject door;
 
     private SpriteRenderer sr;
     // Start is called before the first frame update
@@ -23,12 +25,25 @@ public class StepSwitch : MonoBehaviour
       
     }
 
+    private void controlDoor()
+    {
+        if (connectDoor) {
+            if (switchOn) {
+                door.GetComponent<Door>().isOpen = true;
+            } else
+            {
+                door.GetComponent<Door>().isOpen = false;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Interactable")
         {
             switchOn = true;
             sr.sprite = pressed;
+            controlDoor();
         }
     }
 
@@ -38,6 +53,7 @@ public class StepSwitch : MonoBehaviour
         {
             switchOn = false;
             sr.sprite = normal;
+            controlDoor();
         }
     }
 
