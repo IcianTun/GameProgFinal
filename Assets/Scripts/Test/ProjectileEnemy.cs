@@ -19,6 +19,18 @@ public class ProjectileEnemy : MonoBehaviour
         }
     }
 
+    public void DelayLaunch(Vector2 direction, float force,float delay)
+    {
+        StartCoroutine(LaunchRoutine(direction, force, delay));
+    }
+
+    private IEnumerator LaunchRoutine(Vector2 direction, float force, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Launch(direction, force);
+    }
+
+
     public void Launch(Vector2 direction, float force)
     {
         rigidbody2d.AddForce(direction * force);
