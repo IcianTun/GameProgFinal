@@ -29,7 +29,5 @@ public class Pushable : MonoBehaviour
         if (collision.gameObject.tag != "Player") {
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
-
-
     }
 }
