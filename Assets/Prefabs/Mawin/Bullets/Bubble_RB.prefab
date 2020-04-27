@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 340320824}
   - component: {fileID: 4925097805134149169}
   - component: {fileID: -362836330335101567}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bubble_RB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0029706657, y: 0}
@@ -121,14 +121,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9169493506654029158}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
