@@ -13,7 +13,11 @@ public class RoomController : MonoBehaviour
     public List<GameObject> enemies;
 
     public float cameraYSize = 4.0f;
-    PolygonCollider2D polygon;
+
+    public bool canRevert;
+
+    PolygonCollider2D oldPolygon;
+    float oldCameraYSize;
 
     public bool Lock
     {
@@ -27,15 +31,15 @@ public class RoomController : MonoBehaviour
 
     private void Start()
     {
-        polygon = confiner.m_BoundingShape2D.GetComponent<PolygonCollider2D>();
+        if (virtualCamera != null && confiner != null)
+        {
+            oldPolygon = confiner.m_BoundingShape2D as PolygonCollider2D;
+            oldCameraYSize = virtualCamera.m_Lens.OrthographicSize;
+        }
     }
 
     private void Update()
     {
-        //dev unlock
-        if (Input.GetKeyDown(KeyCode.Space))
-            Lock = false;
-
         if (!Lock)
         {
             //test unlock camera
@@ -44,23 +48,29 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.tag == "Player")
         {
             Debug.Log("player enter");
-            virtualCamera.m_Lens.OrthographicSize = cameraYSize;
-            Lock = true;
-            if (Lock)
-                //test lock camera
+            if (virtualCamera != null && confiner != null)
+            {
+                virtualCamera.m_Lens.OrthographicSize = cameraYSize;
+
                 confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
                 confiner.InvalidatePathCache();
-                
-                foreach (GameObject obj in lockObject)
-                    obj.SetActive(true);
-            foreach (GameObject enemy in enemies)
+            }
+ 
+            foreach (GameObject obj in lockObject)
+                obj.SetActive(true);
+            for (int idx = enemies.Count - 1; idx >= 0; idx--)
             {
+                GameObject enemy = enemies[idx];
+                if (enemy == null)
+                {
+                    enemies.Remove(enemy);
+                    continue;
+                }
                 Enemy e = enemy.GetComponent<Enemy>();
                 if (e!= null)
                 {
@@ -74,8 +84,21 @@ public class RoomController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            foreach (GameObject enemy in enemies)
+            if (canRevert)
             {
+                virtualCamera.m_Lens.OrthographicSize = oldCameraYSize;
+                confiner.m_BoundingShape2D = oldPolygon;
+                confiner.InvalidatePathCache();
+            }
+
+            for (int idx = enemies.Count - 1; idx >= 0; idx--)
+            {
+                GameObject enemy = enemies[idx];
+                if (enemy == null)
+                {
+                    enemies.Remove(enemy);
+                    continue;
+                }
                 Enemy e = enemy.GetComponent<Enemy>();
                 if (e != null)
                 {

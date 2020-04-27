@@ -57,8 +57,8 @@ public class DashMelee : Attack
             directionToPlayer = (playerPos - enemyPos).normalized;
 
             GameObject effect = Instantiate(hitEffect, enemyPos + directionToPlayer,Quaternion.identity);
-            effect.transform.localScale *= size; 
-            Collider2D[] damage = Physics2D.OverlapCircleAll(enemyPos + directionToPlayer, size);
+            effect.transform.localScale *= size;
+            Collider2D[] damage = Physics2D.OverlapCircleAll(enemyPos + directionToPlayer, size / 2);
 
             for (int j = 0; j < damage.Length; j++)
             {
