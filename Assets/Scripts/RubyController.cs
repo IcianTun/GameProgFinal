@@ -110,10 +110,17 @@ public class RubyController : MonoBehaviour
                     Debug.Log("I found a character");
                     character.DisplayDialog();
                 }
-            }
-        }
 
-        
+                Hostage hostage = hit.collider.GetComponent<Hostage>();
+                if (hostage != null)
+                {
+                    if (hostage.target == null)
+                        hostage.SetDestination(transform);
+                    else
+                        hostage.Heal(this);
+                }
+            }
+        } 
     }
 
     // Update is called once per frame

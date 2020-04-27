@@ -13,7 +13,11 @@ public class RoomController : MonoBehaviour
     public List<GameObject> enemies;
 
     public float cameraYSize = 4.0f;
-    PolygonCollider2D polygon;
+
+    public bool canRevert;
+
+    PolygonCollider2D oldPolygon;
+    float oldCameraYSize;
 
     public bool Lock
     {
@@ -27,7 +31,8 @@ public class RoomController : MonoBehaviour
 
     private void Start()
     {
-        polygon = confiner.m_BoundingShape2D.GetComponent<PolygonCollider2D>();
+        oldPolygon = confiner.m_BoundingShape2D as PolygonCollider2D;
+        oldCameraYSize = virtualCamera.m_Lens.OrthographicSize;
     }
 
     private void Update()
@@ -51,14 +56,12 @@ public class RoomController : MonoBehaviour
         {
             Debug.Log("player enter");
             virtualCamera.m_Lens.OrthographicSize = cameraYSize;
-            Lock = true;
-            if (Lock)
-                //test lock camera
-                confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
-                confiner.InvalidatePathCache();
+
+            confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+            confiner.InvalidatePathCache();
                 
-                foreach (GameObject obj in lockObject)
-                    obj.SetActive(true);
+            foreach (GameObject obj in lockObject)
+                obj.SetActive(true);
             foreach (GameObject enemy in enemies)
             {
                 Enemy e = enemy.GetComponent<Enemy>();
@@ -74,6 +77,13 @@ public class RoomController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            if (canRevert)
+            {
+                virtualCamera.m_Lens.OrthographicSize = oldCameraYSize;
+                confiner.m_BoundingShape2D = oldPolygon;
+                confiner.InvalidatePathCache();
+            }
+
             foreach (GameObject enemy in enemies)
             {
                 Enemy e = enemy.GetComponent<Enemy>();

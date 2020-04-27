@@ -43,6 +43,12 @@ public class ProjectileEnemy : MonoBehaviour
         {
             t.ChangeHealth(-1);
         }
+
+        Hostage h = collision.GetComponent<Hostage>();
+        if (h != null)
+        {
+            h   .ChangeHealth(-1);
+        }
         Destroy(gameObject);
     }
 }

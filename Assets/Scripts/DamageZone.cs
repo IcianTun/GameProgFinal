@@ -12,5 +12,13 @@ public class DamageZone : MonoBehaviour
         {
             controller.ChangeHealth(-1);
         }
+
+        Hostage hostage = other.GetComponent<Hostage>();
+
+        if (hostage!= null)
+        {
+            hostage.ChangeHealth(-1);
+        }
+
     }
 }
