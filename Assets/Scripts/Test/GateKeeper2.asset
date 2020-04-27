@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GateKeeper2
   m_EditorClassIdentifier: 
   message: The boss is in the room in the south
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: bf35a71936140b748946736e4fa23402, type: 2}

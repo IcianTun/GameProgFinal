@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GateKeeper3
   m_EditorClassIdentifier: 
   message: But we can't get in if we dont have their badge
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: b3c4dfbf264e7b340b64bcd67d9c1db8, type: 2}

@@ -38,7 +38,7 @@ public class Hostage : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
 
-    bool rescued;
+    public bool rescued = false;
 
     void Start()
     {

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757d2a78e0a09148bd64debd8b95781, type: 3}
   m_Name: Emblem
   m_EditorClassIdentifier: 
-  message: 'You got the '
+  message: Now we can get in the boss room
   nextNode: {fileID: 0}

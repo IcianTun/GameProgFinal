@@ -31,8 +31,11 @@ public class RoomController : MonoBehaviour
 
     private void Start()
     {
-        oldPolygon = confiner.m_BoundingShape2D as PolygonCollider2D;
-        oldCameraYSize = virtualCamera.m_Lens.OrthographicSize;
+        if (virtualCamera != null && confiner != null)
+        {
+            oldPolygon = confiner.m_BoundingShape2D as PolygonCollider2D;
+            oldCameraYSize = virtualCamera.m_Lens.OrthographicSize;
+        }
     }
 
     private void Update()
@@ -47,19 +50,27 @@ public class RoomController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.tag == "Player")
         {
             Debug.Log("player enter");
-            virtualCamera.m_Lens.OrthographicSize = cameraYSize;
+            if (virtualCamera != null && confiner != null)
+            {
+                virtualCamera.m_Lens.OrthographicSize = cameraYSize;
 
-            confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
-            confiner.InvalidatePathCache();
-                
+                confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+                confiner.InvalidatePathCache();
+            }
+ 
             foreach (GameObject obj in lockObject)
                 obj.SetActive(true);
-            foreach (GameObject enemy in enemies)
+            for (int idx = enemies.Count - 1; idx >= 0; idx--)
             {
+                GameObject enemy = enemies[idx];
+                if (enemy == null)
+                {
+                    enemies.Remove(enemy);
+                    continue;
+                }
                 Enemy e = enemy.GetComponent<Enemy>();
                 if (e!= null)
                 {
@@ -80,8 +91,14 @@ public class RoomController : MonoBehaviour
                 confiner.InvalidatePathCache();
             }
 
-            foreach (GameObject enemy in enemies)
+            for (int idx = enemies.Count - 1; idx >= 0; idx--)
             {
+                GameObject enemy = enemies[idx];
+                if (enemy == null)
+                {
+                    enemies.Remove(enemy);
+                    continue;
+                }
                 Enemy e = enemy.GetComponent<Enemy>();
                 if (e != null)
                 {
