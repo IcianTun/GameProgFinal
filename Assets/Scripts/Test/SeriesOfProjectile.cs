@@ -49,6 +49,8 @@ public class SeriesOfProjectile : Attack
             }
             projectile.DelayLaunch(dir, 600, delayStartTime);
         }
+        
+
 
 
         yield return base.Perform(enemyScript);

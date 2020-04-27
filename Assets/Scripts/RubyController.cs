@@ -64,6 +64,7 @@ public class RubyController : MonoBehaviour
 
         melee = sword.GetComponent<MeleeWeapon>();
         sword.GetComponent<PolygonCollider2D>().enabled = false;
+        dashTime = startDashTime;
     }
 
     private void Update()
@@ -100,7 +101,7 @@ public class RubyController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("I talk to something");
+            Debug.Log("I try to talk to something");
             RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
             if (hit.collider != null)
             {

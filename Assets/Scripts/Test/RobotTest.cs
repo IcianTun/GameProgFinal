@@ -5,14 +5,7 @@ using UnityEngine;
 public class RobotTest : Enemy
 {
     public GameObject projectilePrefab;
-
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Initiate(10, 3.0f, 2.0f);
-        base.Start();
-    }
-
+    
     // Update is called once per frame
     protected override void Update()
     {
