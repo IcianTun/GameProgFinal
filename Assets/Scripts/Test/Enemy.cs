@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     #endregion
 
     //protected variable for child class
+
+    [SerializeField]
     protected int currentHealth;
     protected bool isInvincible;
     protected float invincibleTimer;
@@ -32,6 +34,8 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
     protected Vector2 lookDirection = new Vector2(1, 0);
 
+    public float HpPercent { get { return (float)currentHealth / maxHealth; } }
+
     protected virtual void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -39,13 +43,7 @@ public class Enemy : MonoBehaviour
 
         currentHealth = maxHealth;
     }
-
-    public void Initiate(int hp, float speed, float iframe)
-    {
-        this.maxHealth = hp;
-        this.speed = speed;
-        this.timeInvincible = iframe;
-    }
+    
 
     protected virtual void Update()
     {
@@ -58,9 +56,6 @@ public class Enemy : MonoBehaviour
             //or
         }
         /*
-         if (player == null)
-            return;
-
 
         //calculate from player pos
         Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
@@ -119,7 +114,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
     {
         if (amount < 0)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeriesOfProjectile : Attack
+public class RingBullet : Attack
 {
     public GameObject projectilePrefab;
     public int numberOfProjectile = 1;
@@ -12,10 +12,10 @@ public class SeriesOfProjectile : Attack
 
     List<GameObject> projectiles;
     Animator animator;
-    
+
     private void Start()
     {
-        
+
     }
 
     override public IEnumerator Perform(Enemy enemyScript)
@@ -29,16 +29,12 @@ public class SeriesOfProjectile : Attack
         Vector2 enemyPos = enemyScript.transform.position;
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
-        animator.SetFloat("Move X", directionToPlayer.x);
-        animator.SetFloat("Move Y", directionToPlayer.y);
-
         int space = numberOfProjectile - 1;
         for (int i = 0; i < numberOfProjectile; i++)
         {
             Vector2 axis = Vector2.Perpendicular(directionToPlayer).normalized;
             Vector2 offset = axis * projectileOffset * (i - (float)space / 2);
             GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + directionToPlayer + offset, Quaternion.identity, enemyScript.transform);
-
 
             ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
             Vector2 dir = directionToPlayer;
@@ -49,8 +45,6 @@ public class SeriesOfProjectile : Attack
             }
             projectile.DelayLaunch(dir, 600, delayStartTime);
         }
-        
-
 
 
         yield return base.Perform(enemyScript);

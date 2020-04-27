@@ -16,22 +16,28 @@ public class NonPlayerCharacter : MonoBehaviour
 
     float timerDisplay;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        dialogBox.SetActive(false);
+        if (dialogBox != null)
+        {
+            dialogBox.SetActive(false);
+        }
         timerDisplay = -1.0f;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (timerDisplay >= 0)
         {
             timerDisplay -= Time.deltaTime;
             if (timerDisplay < 0)
             {
-                dialogBox.SetActive(false);
-                currentConversationNode = startConversationNode;
+                if(dialogBox != null)
+                {
+                    dialogBox.SetActive(false);
+                    currentConversationNode = startConversationNode;
+                }
             }
         }
     }
@@ -39,14 +45,18 @@ public class NonPlayerCharacter : MonoBehaviour
     virtual public void DisplayDialog()
     {
         timerDisplay = displayTime;
-        if (!dialogBox.activeInHierarchy)
+        if (dialogBox != null && !dialogBox.activeInHierarchy)
         {
-            currentConversationNode = startConversationNode;
             dialogBox.SetActive(true);
-        } else if(currentConversationNode.nextNode)
+            if(currentConversationNode)
+            currentConversationNode = startConversationNode;
+        }
+
+        if (currentConversationNode && currentConversationNode.nextNode)
         {
             currentConversationNode = currentConversationNode.nextNode;
         }
+        if(dialogText)
         dialogText.SetText(currentConversationNode.message);
     }
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TunBoss : Enemy
+public class FlippityFlipWall : MonoBehaviour
 {
+
 
 
 
