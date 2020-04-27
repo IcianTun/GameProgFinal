@@ -118,10 +118,6 @@ public class Hostage : MonoBehaviour
         animator.SetFloat("Move X", dir.x);
         animator.SetFloat("Move Y", dir.y);
 
-        position = position + dir.normalized * speed * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
-
         float distance = Vector2.Distance(rigidbody2d.position, path.vectorPath[currentWaypoint]);
 
         if (distance < nextWaypointDistance)

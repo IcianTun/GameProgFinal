@@ -37,10 +37,6 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        //dev unlock
-        if (Input.GetKeyDown(KeyCode.Space))
-            Lock = false;
-
         if (!Lock)
         {
             //test unlock camera
@@ -49,7 +45,7 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log(collision.gameObject.name);
         if (collision.tag == "Player")
