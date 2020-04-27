@@ -38,23 +38,16 @@ public class SeriesOfProjectile : Attack
             Vector2 axis = Vector2.Perpendicular(directionToPlayer).normalized;
             Vector2 offset = axis * projectileOffset * (i - (float)space / 2);
             GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + directionToPlayer + offset, Quaternion.identity, enemyScript.transform);
-            projectiles.Add(projectileObject);
-        }
 
-        yield return new WaitForSeconds(delayStartTime);
 
-        foreach (GameObject projectileObject in projectiles)
-        {
             ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
-
             Vector2 dir = directionToPlayer;
             if (focus)
             {
                 Vector2 bulletPos = projectile.transform.position;
                 dir = (playerPos - bulletPos).normalized;
             }
-
-            projectile.Launch(dir, 600);
+            projectile.DelayLaunch(dir, 600, delayStartTime);
         }
 
 

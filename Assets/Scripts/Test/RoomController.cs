@@ -41,7 +41,6 @@ public class RoomController : MonoBehaviour
             //test unlock camera
             foreach (GameObject obj in lockObject)
                 obj.SetActive(false);
-            Lock = false;
         }
     }
 
