@@ -18,7 +18,10 @@ public class NonPlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dialogBox.SetActive(false);
+        if (dialogBox != null)
+        {
+            dialogBox.SetActive(false);
+        }
         timerDisplay = -1.0f;
     }
 
@@ -30,8 +33,11 @@ public class NonPlayerCharacter : MonoBehaviour
             timerDisplay -= Time.deltaTime;
             if (timerDisplay < 0)
             {
-                dialogBox.SetActive(false);
-                currentConversationNode = startConversationNode;
+                if(dialogBox != null)
+                {
+                    dialogBox.SetActive(false);
+                    currentConversationNode = startConversationNode;
+                }
             }
         }
     }
