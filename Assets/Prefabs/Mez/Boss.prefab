@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 940376161089636336}
   - component: {fileID: 5026769419402004210}
   - component: {fileID: 1380334057008661343}
-  - component: {fileID: 8546482482094162433}
   - component: {fileID: 3391599644898776579}
   m_Layer: 13
   m_Name: Boss
@@ -30,8 +29,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3391599644898776577}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: -44.3, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8155555540788706421}
@@ -57,12 +56,12 @@ MonoBehaviour:
   speed: 3
   maxHealth: 20
   timeInvincible: 0.5
-  enemyHealthBar: {fileID: 0}
+  enemyHealthBar: {fileID: 3391599644898776579}
   player: {fileID: 0}
   attackList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8155555540788706420}
+  - {fileID: 8155555539771236763}
+  - {fileID: 8155555538999213468}
   - {fileID: 8155555539148328613}
   currentAttack: {fileID: 0}
   nextAttackReady: 1
@@ -185,33 +184,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8546482482094162433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391599644898776577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5443d4772264e114ab7d6d553c91a006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  maxHealth: 40
-  timeInvincible: 0.5
-  enemyHealthBar: {fileID: 0}
-  player: {fileID: 0}
-  attackList:
-  - {fileID: 8155555540788706420}
-  - {fileID: 8155555539771236763}
-  - {fileID: 8155555538999213468}
-  - {fileID: 0}
-  currentAttack: {fileID: 0}
-  nextAttackReady: 1
-  tstVector2PlayerPos: {x: 0, y: 0}
-  currentHealth: 0
-  winningZone: {fileID: 0}
 --- !u!114 &3391599644898776579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2d59a79296b1345a9c5840d0742288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   numberOfMelee: 3
   delayMelee: 0.2
@@ -417,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47de28245d85d4385f2772ccfef9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   projectilePrefab: {fileID: 8002005404733687776, guid: 402383e8a7a174a4585fa946a33f6027,
     type: 3}
@@ -468,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47de28245d85d4385f2772ccfef9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   projectilePrefab: {fileID: 8002005404733687776, guid: 402383e8a7a174a4585fa946a33f6027,
     type: 3}
@@ -593,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b7370df9bddf49bc30959365cafa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: Tackle
   numberOfCharge: 3
   delayStartTime: 0.2

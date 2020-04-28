@@ -35,7 +35,7 @@ public class SeriesOfProjectile : Attack
         {
             Vector2 axis = Vector2.Perpendicular(directionToPlayer).normalized;
             Vector2 offset = axis * projectileOffset * (i - (float)space / 2);
-            GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + directionToPlayer + offset, Quaternion.identity, enemyScript.transform);
+            GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + directionToPlayer + offset, Quaternion.identity);
 
 
             ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
