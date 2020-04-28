@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     {
         Vector2 current = new Vector2(transform.position.x, transform.position.y);
         //if (transform.position.magnitude > 1000.0f)
-        if (Vector2.Distance(awakePos,current) > 10)
+        if (Vector2.Distance(awakePos,current) > 20)
         {
             Destroy(gameObject);
         }
