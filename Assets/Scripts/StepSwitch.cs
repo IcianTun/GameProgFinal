@@ -90,7 +90,27 @@ public class StepSwitch : MonoBehaviour
             controlDoor();
         }
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Interactable")
+        {
+            if (delaySwitch)
+            {
+                exit = false;
+                try
+                {
+                    stopTriggerObject.GetComponent<DamageZone>().enable = false;
+                }
+                catch
+                {
+                    stopTriggerObject.GetComponent<Door>().enable = true;
+                }
+            }
+            switchOn = true;
+            sr.sprite = pressed;
+            controlDoor();
+        }
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!oneTime && (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Interactable") )
