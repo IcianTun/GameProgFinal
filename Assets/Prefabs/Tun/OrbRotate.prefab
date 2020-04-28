@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3348165152712954202}
   - component: {fileID: 3348165152712954200}
   m_Layer: 12
-  m_Name: Orb
+  m_Name: OrbRotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circleMoveSpeed: 1
-  circleSize: 0
-  circleGrowSpeed: 0.01
+  circleSize: 0.5
+  circleGrowSpeed: 0.025
   centerPos: {x: 0, y: 0, z: 0}
   offsetAngle: 0

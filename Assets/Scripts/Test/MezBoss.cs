@@ -13,8 +13,10 @@ public class MezBoss : Enemy
         base.Update();
     }
 
-    private void OnDestroy()
+    override protected void Unlock()
     {
         winningZone.SetActive(true);
+
     }
+
 }
