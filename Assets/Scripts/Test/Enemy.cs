@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float timeInvincible;
 
     public int health { get { return currentHealth; } }
+    public EnemyHealthBar enemyHealthBar;
 
     //test need to change to private and find in own room
     public GameObject player;
@@ -42,6 +43,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         currentHealth = maxHealth;
+        enemyHealthBar = GetComponent<EnemyHealthBar>();
     }
     
 
@@ -127,6 +129,8 @@ public class Enemy : MonoBehaviour
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+        enemyHealthBar.SetValue(currentHealth / (float)maxHealth);
         Debug.Log(currentHealth);
     }
 
