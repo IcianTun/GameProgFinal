@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TunBoss : Enemy
 {
-
+    public Transform center;
 
 
 }

@@ -56,7 +56,7 @@ public class NonPlayerCharacter : MonoBehaviour
         {
             currentConversationNode = currentConversationNode.nextNode;
         }
-        if(dialogText)
+        if(dialogText && currentConversationNode)
         dialogText.SetText(currentConversationNode.message);
     }
 }

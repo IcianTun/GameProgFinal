@@ -96,8 +96,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562ec13ffb58dc84f90294255d25f09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  left: {fileID: 0}
-  right: {fileID: 0}
+  displayTime: 4
+  dialogBox: {fileID: 0}
+  dialogText: {fileID: 0}
+  startConversationNode: {fileID: 0}
+  left: {fileID: -2913735589890397908, guid: 5df826adcb35e7143b714f9b9b2ab5e9, type: 3}
+  right: {fileID: 8602203691112182254, guid: 5df826adcb35e7143b714f9b9b2ab5e9, type: 3}
   spikes: []
 --- !u!61 &7019130248693177551
 BoxCollider2D:
@@ -112,7 +116,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009700775, y: -0.1842928}
+  m_Offset: {x: 0, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -123,5 +127,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8642044, y: 0.6314144}
+  m_Size: {x: 0.8642044, y: 0.78965473}
   m_EdgeRadius: 0

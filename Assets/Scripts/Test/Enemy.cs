@@ -139,4 +139,25 @@ public class Enemy : MonoBehaviour
             player.ChangeHealth(-1);
         }
     }
+
+
+    public void MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        StartCoroutine(_MoveToPosition(targetPosition, timeToMove, delay));
+    }
+
+    private IEnumerator _MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, targetPosition, t);
+            yield return null;
+        }
+    }
+
 }

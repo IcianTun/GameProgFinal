@@ -9,11 +9,15 @@ public class SpikeLever : NonPlayerCharacter
     public Sprite right;
 
     public List<SpikeBlockage> spikes;
-    public Sprite currentSprite;
+
+    SpriteRenderer spriteRenderer;
+
+    private bool isLeft;
 
     protected override void Start()
     {
-
+        isLeft = true;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     protected override void Update()
@@ -27,7 +31,15 @@ public class SpikeLever : NonPlayerCharacter
         {
             spike.Toggle();
         }
-
+        if (isLeft)
+        {
+            spriteRenderer.sprite = right;
+        }
+        else
+        {
+            spriteRenderer.sprite = left;
+        }
+        isLeft = !isLeft;
 
     }
 }
