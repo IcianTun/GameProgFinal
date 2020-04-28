@@ -20,7 +20,7 @@ public class froggy : Enemy
             tstVector2PlayerPos = player.transform.position;
             if (nextAttackReady && attackList.Count > 0)
             {
-                Debug.Log("must atak");
+
                 animator.SetTrigger("Attacking");
                 nextAttackReady = false;
 

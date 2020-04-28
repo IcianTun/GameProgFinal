@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
         enemyHealthBar.SetValue(currentHealth / (float)maxHealth);
-        Debug.Log(currentHealth);
+
         if (currentHealth == 0 )
         {
             Unlock();

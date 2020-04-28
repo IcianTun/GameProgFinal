@@ -15,7 +15,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     public void SetValue(float value)
     {
-        Debug.Log("set value = " + value);
         currentHealth.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
     }
 }

@@ -6,9 +6,10 @@ public class JambiBoss : Enemy
 {
     public GameObject projectilePrefab;
     private int state = 0;
-    private int lastHealth = 20;
+    private int lastHealth = 12;
 
     public key key;
+    private int attackNumber = 0;
     // Start is called before the first frame update
     // Update is called once per frame
     protected override void Update()
@@ -27,13 +28,8 @@ public class JambiBoss : Enemy
             {
                 nextAttackReady = false;
 
-                int a = Random.Range(0, attackList.Count);
-                Attack attack = attackList[a];
-                while (attackList.Count > 1 && attack == currentAttack)
-                {
-                    int b = Random.Range(0, attackList.Count);
-                    attack = attackList[b];
-                }
+
+                Attack attack = attackList[attackNumber];
                 currentAttack = attack;
                 StartCoroutine(attack.Perform(this));
                 //waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
@@ -97,7 +93,6 @@ public class JambiBoss : Enemy
 
     void Attack()
     {
-        Debug.Log(lookDirection);
         GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
 
         ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
@@ -109,9 +104,21 @@ public class JambiBoss : Enemy
         {
             state = (state + 1) % 4;
             lastHealth = health;
-            if (state == 0)
+            if (health <= 4)
             {
-                //TODO: change attacking script
+                attackNumber = 3;
+            }
+            else if (health <= 8)
+            {
+                attackNumber = 2;
+            }
+            else if (health <= 10)
+            {
+                attackNumber = 1;
+            }
+            else if (health <= 12)
+            {
+                attackNumber = 0;
             }
         }
         return state;

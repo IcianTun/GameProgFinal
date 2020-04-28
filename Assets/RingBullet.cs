@@ -62,7 +62,7 @@ public class RingBullet : Attack
         }
         for (int i = 0; i < numberOfProjectile; i++)
         {
-            GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + radiusFromBoss * (Quaternion.Euler(0, 0, i * angle + offsetAngle) * directionToPlayer), Quaternion.identity, enemyScript.transform);
+            GameObject projectileObject = Instantiate(projectilePrefab, enemyPos + radiusFromBoss * (Quaternion.Euler(0, 0, i * angle + offsetAngle) * directionToPlayer), Quaternion.identity);
             
 
             ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
