@@ -58,13 +58,18 @@ public class key: NonPlayerCharacter
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isSetActive)
+        RubyController ruby = collision.GetComponent<RubyController>();
+        if(ruby != null)
         {
-            foreach (GameObject o in gameObjectList)
+            if (isSetActive)
             {
-                o.SetActive(true);
-            }
-            Destroy(gameObject);
+                foreach (GameObject o in gameObjectList)
+                {
+                    o.SetActive(true);
+                }
+                Destroy(gameObject);
+        }
+
         }
     }
 }

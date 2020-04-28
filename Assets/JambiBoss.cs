@@ -7,6 +7,7 @@ public class JambiBoss : Enemy
     public GameObject projectilePrefab;
     private int state = 0;
     private int lastHealth = 20;
+
     // Start is called before the first frame update
     // Update is called once per frame
     protected override void Update()
@@ -22,7 +23,6 @@ public class JambiBoss : Enemy
             float vertical = playerPos.y - position.y;
 
             lookDirection = new Vector2(horizontal, vertical).normalized;
-            Debug.Log("dir = " + lookDirection.x);
             animator.SetFloat("RubyX", lookDirection.x);
 
         }
