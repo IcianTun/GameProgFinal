@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JambiBoss : Enemy
+public class froggy : Enemy
 {
-    public GameObject projectilePrefab;
-    private int state = 0;
-    private int lastHealth = 20;
-
-    public key key;
-    // Start is called before the first frame update
+    public bool facing;
     // Update is called once per frame
     protected override void Update()
     {
@@ -25,6 +20,8 @@ public class JambiBoss : Enemy
             tstVector2PlayerPos = player.transform.position;
             if (nextAttackReady && attackList.Count > 0)
             {
+                Debug.Log("must atak");
+                animator.SetTrigger("Attacking");
                 nextAttackReady = false;
 
                 int a = Random.Range(0, attackList.Count);
@@ -58,68 +55,17 @@ public class JambiBoss : Enemy
             float vertical = playerPos.y - position.y;
 
             lookDirection = new Vector2(horizontal, vertical).normalized;
-            animator.SetFloat("RubyX", lookDirection.x);
+            //animator.SetFloat("RubyX", lookDirection.x);
 
         }
-        if(state != checkHealth())
+        if (facing)
         {
-            state = checkHealth();
-            if (state%4 == 0)
-            {
-                Move(0, 9);
-            }
-            if (state % 4 == 1)
-            {
-                Move(12, 0);
-            }
-
-            if (state % 4 == 2)
-            {
-                Move(0, -9);
-            }
-
-            if (state % 4 == 3)
-            {
-                Move(-12, 0);
-            }
-
+            animator.SetFloat("Facing", 1);
         }
-    }
-
-    private void Move(float x, float y)
-    {
-        Vector2 position = rigidbody2d.position;
-        Vector2 move = new Vector2(x, y);
-        position = position + move;
-        MoveToPosition(position, 0.01f, 0);
-
-    }
-
-    void Attack()
-    {
-        Debug.Log(lookDirection);
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
-        ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
-        projectile.Launch(lookDirection, 300);
-    }
-    private int checkHealth()
-    {
-        if(lastHealth != health)
+        else
         {
-            state = (state + 1) % 4;
-            lastHealth = health;
-            if (state == 0)
-            {
-                //TODO: change attacking script
-            }
+            animator.SetFloat("Facing", -1);
         }
-        return state;
     }
-    protected override void Unlock()
-    {
-        key.setActive(false);
-
-    }
-
 }
+

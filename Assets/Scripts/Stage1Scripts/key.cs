@@ -72,4 +72,12 @@ public class key: NonPlayerCharacter
 
         }
     }
+
+    public void setActive(bool activation)
+    {
+        foreach (GameObject o in gameObjectList)
+        {
+            o.SetActive(activation);
+        }
+    }
 }
