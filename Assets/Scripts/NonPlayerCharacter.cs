@@ -36,7 +36,7 @@ public class NonPlayerCharacter : MonoBehaviour
                 if(dialogBox != null)
                 {
                     dialogBox.SetActive(false);
-                    currentConversationNode = startConversationNode;
+                    currentConversationNode = null;
                 }
             }
         }

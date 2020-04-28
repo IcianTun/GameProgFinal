@@ -15,7 +15,7 @@ public class LineOfWall : Attack
         Vector3 enemyPos = enemyScript.transform.position;
         Vector3 directionToPlayer = (playerPos - enemyPos).normalized;
 
-        int numberOfProjectile = 8;
+        int numberOfProjectile = 13;
         Instantiate(targetTelegraph, playerPos, Quaternion.identity).GetComponent<TargetTelegraph>().SetDestroyTimer(2f);
         yield return new WaitForSeconds(0.5f);
 
