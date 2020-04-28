@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3391599644898776577}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2d59a79296b1345a9c5840d0742288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   numberOfMelee: 3
   delayMelee: 0.2
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47de28245d85d4385f2772ccfef9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   projectilePrefab: {fileID: 8002005404733687776, guid: 402383e8a7a174a4585fa946a33f6027,
     type: 3}
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b47de28245d85d4385f2772ccfef9f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: 
   projectilePrefab: {fileID: 8002005404733687776, guid: 402383e8a7a174a4585fa946a33f6027,
     type: 3}
@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332b7370df9bddf49bc30959365cafa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  executionTime: 2
+  executionTime: 1
   attackName: Tackle
   numberOfCharge: 3
   delayStartTime: 0.2

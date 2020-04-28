@@ -19,7 +19,7 @@ public class ShotProjectile : Attack
 
         yield return new WaitForSeconds(1);
 
-        GameObject projectileObject = Instantiate(projectilePrefab, enemyScript.transform.position + directionToPlayer, Quaternion.identity, enemyScript.transform);
+        GameObject projectileObject = Instantiate(projectilePrefab, enemyScript.transform.position + directionToPlayer, Quaternion.identity);
         ProjectileEnemy projectile = projectileObject.GetComponent<ProjectileEnemy>();
 
         projectile.Launch(directionToPlayer, 300);
