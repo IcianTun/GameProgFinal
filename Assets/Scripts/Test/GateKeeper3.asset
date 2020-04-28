@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757d2a78e0a09148bd64debd8b95781, type: 3}
   m_Name: GateKeeper3
   m_EditorClassIdentifier: 
-  message: But we can't get in if we dont have their badge
+  message: Maybe you drop it somewhere around here
   nextNode: {fileID: 11400000, guid: b3c4dfbf264e7b340b64bcd67d9c1db8, type: 2}

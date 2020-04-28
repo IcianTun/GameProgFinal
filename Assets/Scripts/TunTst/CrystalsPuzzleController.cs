@@ -8,7 +8,7 @@ public class CrystalsPuzzleController : MonoBehaviour
     public CrystalNPC greenCrystal;
     public CrystalNPC blueCrystal;
 
-    public Lock lockObject;
+    public Door lockObject;
     
     private List<CrystalColor> solutionList = new List<CrystalColor>()
                                             {
@@ -44,7 +44,7 @@ public class CrystalsPuzzleController : MonoBehaviour
 
     void Unlock()
     {
-        Debug.Log("Unlock!!");
+        lockObject.enable = true;
         locked = false;
 
     }

@@ -8,7 +8,6 @@ public class CrystalNPC : NonPlayerCharacter
     public CrystalsPuzzleController puzzleController;
     
 
-
     protected override void Start()
     {
 

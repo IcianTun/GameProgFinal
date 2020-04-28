@@ -53,6 +53,7 @@ public class RubyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dashTime = startDashTime;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -81,6 +82,12 @@ public class RubyController : MonoBehaviour
             Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
 
+
+        if (attackTime > 0)
+            attackTime -= Time.deltaTime;
+
+        Stab();
+
         if (Input.GetButtonDown("Fire1"))
             Launch();
         else if (Input.GetButton("Fire2") && attackTime <= 0)
@@ -97,7 +104,7 @@ public class RubyController : MonoBehaviour
             stabPos = mousePos;
             stabDir = mouseDir;
         }
-        Stab();
+        
 
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -197,7 +204,6 @@ public class RubyController : MonoBehaviour
     {
         dashTime -= Time.deltaTime;
         rigidbody2d.AddForce(move.normalized * dashSpeed);
-        //rigidbody2d.velocity = move.normalized * dashSpeed;
         if (dashTime < 0)
         {
             dashTime = startDashTime;
@@ -234,7 +240,7 @@ public class RubyController : MonoBehaviour
             sword.GetComponent<PolygonCollider2D>().enabled = true;
             sword.position = pos + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack, 2);
 
-            attackTime -= Time.deltaTime;
+            
         }
         else
         {

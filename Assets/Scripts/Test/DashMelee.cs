@@ -21,6 +21,7 @@ public class DashMelee : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
+
         if (animator == null)
             animator = enemyScript.GetComponent<Animator>();
 
@@ -29,7 +30,6 @@ public class DashMelee : Attack
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
         animator.SetFloat("Move X", directionToPlayer.x);
-        animator.SetFloat("Move Y", directionToPlayer.y);
 
         lineRenderer.enabled = true;
 
@@ -42,12 +42,18 @@ public class DashMelee : Attack
         while (t < 1)
         {
             t += Time.deltaTime / dashTime;
-            enemyScript.transform.position = Vector3.Lerp(enemyPos, playerPos - directionToPlayer, t);
+
+            Vector2 pos = Vector3.Lerp(enemyPos, playerPos - directionToPlayer, t);
+            enemyScript.GetComponent<Rigidbody2D>().MovePosition(pos);
+
+            animator.SetFloat("Speed", 1-t);
             yield return null;
         }
 
+
         lineRenderer.enabled = false;
 
+        animator.SetTrigger("Attack");
         for (int i = 0; i < numberOfMelee; i++)
         {
             yield return new WaitForSeconds(delayMelee);
@@ -78,8 +84,8 @@ public class DashMelee : Attack
             }
 
             animator.SetFloat("Move X", directionToPlayer.x);
-            animator.SetFloat("Move Y", directionToPlayer.y);
         }
+
         yield return base.Perform(enemyScript);
     }
 

@@ -76,13 +76,12 @@ public class Hostage : MonoBehaviour
 
     void FixedUpdate()
     {
-        //ded
+        animator.SetFloat("Move X", lookDirection.x);
+
         if (currentHealth == 0)
         {
-            //animator.SetTrigger("Fixed");
             Destroy(gameObject);
             return;
-            //or
         }
 
         if (isInvincible)
@@ -115,8 +114,11 @@ public class Hostage : MonoBehaviour
         Vector2 position = rigidbody2d.position;
         Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - position).normalized;
 
-        animator.SetFloat("Move X", dir.x);
-        animator.SetFloat("Move Y", dir.y);
+        if (!Mathf.Approximately(dir.x, 0.0f))
+        {
+            lookDirection.Set(dir.x, 0);
+            lookDirection.Normalize();
+        }
 
         float distance = Vector2.Distance(rigidbody2d.position, path.vectorPath[currentWaypoint]);
 
@@ -124,6 +126,8 @@ public class Hostage : MonoBehaviour
         {
             currentWaypoint++;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(aIPath.desiredVelocity.normalized.x));
 
         if (cooldown > 0)
             cooldown -= Time.deltaTime;
@@ -137,6 +141,7 @@ public class Hostage : MonoBehaviour
             {
                 player.ChangeHealth(1);
                 cooldown = healCooldown;
+                animator.SetTrigger("Heal");
             }
         }
     }
@@ -149,6 +154,7 @@ public class Hostage : MonoBehaviour
                 return;
 
             //play hit animation
+            animator.SetTrigger("Hit");
 
             isInvincible = true;
             invincibleTimer = timeInvincible;

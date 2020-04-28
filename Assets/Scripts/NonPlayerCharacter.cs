@@ -49,14 +49,18 @@ public class NonPlayerCharacter : MonoBehaviour
         {
             dialogBox.SetActive(true);
             if(currentConversationNode)
-            currentConversationNode = startConversationNode;
+                currentConversationNode = startConversationNode;
         }
 
         if (currentConversationNode && currentConversationNode.nextNode)
         {
             currentConversationNode = currentConversationNode.nextNode;
         }
-        if(dialogText)
-        dialogText.SetText(currentConversationNode.message);
+
+        if (!currentConversationNode)
+            currentConversationNode = startConversationNode;
+
+        if (dialogText)
+            dialogText.SetText(currentConversationNode.message);
     }
 }

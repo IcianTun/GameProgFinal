@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9757d2a78e0a09148bd64debd8b95781, type: 3}
   m_Name: GateKeeper1
   m_EditorClassIdentifier: 
-  message: Hey! You defeat this black organization please
+  message: Hey! You can't enter boss room without badge
   nextNode: {fileID: 11400000, guid: 57f861df525e5c446abdfd3f9a14cbac, type: 2}

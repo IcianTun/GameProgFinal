@@ -49,39 +49,12 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Update()
     {
-        //ded
         if (currentHealth == 0)
         {
-            //animator.SetTrigger("Fixed");
             Destroy(gameObject);
             return;
-            //or
         }
-        /*
-
-        //calculate from player pos
-        Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
-        Vector2 position = rigidbody2d.position;
-
-        float horizontal = playerPos.x - position.x;
-        float vertical = playerPos.y - position.y;
-
-        Vector2 move = new Vector2(horizontal, vertical);
-
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
-
-        animator.SetFloat("Move X", lookDirection.x);
-        animator.SetFloat("Move Y", lookDirection.y);
-
-
-        position = position + move * speed * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
-        */
+       
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -143,4 +116,25 @@ public class Enemy : MonoBehaviour
             player.ChangeHealth(-1);
         }
     }
+
+
+    public void MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        StartCoroutine(_MoveToPosition(targetPosition, timeToMove, delay));
+    }
+
+    private IEnumerator _MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, targetPosition, t);
+            yield return null;
+        }
+    }
+
 }
