@@ -14,7 +14,7 @@ public class DashCircle : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
-
+        yield return new WaitForSeconds(1f);
         // dash -------------------------------------------------------------
         Vector3 playerPos = enemyScript.player.transform.position;
         Vector3 enemyPos = enemyScript.transform.position;

@@ -37,6 +37,8 @@ public class Enemy : MonoBehaviour
 
     public float HpPercent { get { return (float)currentHealth / maxHealth; } }
 
+    SpriteRenderer spriteRenderer;
+
     protected virtual void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
 
         currentHealth = maxHealth;
         enemyHealthBar = GetComponent<EnemyHealthBar>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
 
@@ -130,8 +133,8 @@ public class Enemy : MonoBehaviour
                 return;
 
             //play hit animation
-
             isInvincible = true;
+            StartCoroutine(PlayFlickerAnimation());
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
@@ -144,6 +147,21 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    IEnumerator PlayFlickerAnimation()
+    {
+        Debug.Log("Enter flick!");
+        bool tst = false;
+        while (isInvincible)
+        {
+            Debug.Log("flick!");
+            spriteRenderer.enabled = tst;
+            yield return new WaitForSeconds(0.1f);
+            tst = !tst ;
+        }
+        spriteRenderer.enabled = true;
+        yield return null;
+    }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {

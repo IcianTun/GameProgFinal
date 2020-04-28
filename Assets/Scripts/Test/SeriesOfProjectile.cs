@@ -25,7 +25,10 @@ public class SeriesOfProjectile : Attack
         Vector2 enemyPos = enemyScript.transform.position;
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
-        animator.SetFloat("Move X", directionToPlayer.x);
+        if (animator)
+            animator.SetFloat("Move X", directionToPlayer.x);
+        else
+            Debug.Log("NO ANIMATOR NAJAAA");
 
         int space = numberOfProjectile - 1;
         for (int i = 0; i < numberOfProjectile; i++)

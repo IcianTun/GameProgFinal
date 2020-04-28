@@ -12,6 +12,7 @@ public class ArrayOfOrb : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
+        yield return new WaitForSeconds(1f);
         TunBoss tunBoss = (TunBoss)enemyScript;
         if (tunBoss.center)
         {

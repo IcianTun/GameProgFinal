@@ -17,6 +17,8 @@ public class TunBossRoomController : MonoBehaviour
 
     public bool canRevert;
 
+    public bool alreadyPass = false;
+
     [SerializeField]
     private bool islock = false;
     public bool Lock
@@ -36,6 +38,10 @@ public class TunBossRoomController : MonoBehaviour
                     obj.SetActive(false);
             }
             islock = value;
+            if (!value)
+            {
+                alreadyPass = true;
+            }
         }
     }
     
@@ -45,6 +51,7 @@ public class TunBossRoomController : MonoBehaviour
 
     private void Start()
     {
+        alreadyPass = false;
         if (virtualCamera != null && confiner != null)
         {
             oldPolygon = confiner.m_BoundingShape2D as PolygonCollider2D;
@@ -55,7 +62,7 @@ public class TunBossRoomController : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !alreadyPass)
         {
             Debug.Log("player enter");
             if (virtualCamera != null && confiner != null)
@@ -78,6 +85,7 @@ public class TunBossRoomController : MonoBehaviour
                 if (e != null)
                 {
                     e.player = collision.gameObject;
+                    e.GetComponent<BoxCollider2D>().enabled = true;
                 }
             }
         }
@@ -85,7 +93,7 @@ public class TunBossRoomController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && !alreadyPass)
         {
             if (canRevert)
             {

@@ -9,11 +9,14 @@ public class MezBoss : Enemy
     // Update is called once per frame
     protected override void Update()
     {
-        if (currentHealth == 0)
-        {
-            winningZone.SetActive(true);
-        }
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         base.Update();
     }
+
+    override protected void Unlock()
+    {
+        winningZone.SetActive(true);
+
+    }
+
 }

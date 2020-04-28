@@ -11,6 +11,7 @@ public class LineOfWall : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
+        yield return new WaitForSeconds(0.5f);
         Vector3 playerPos = enemyScript.player.transform.position;
         Vector3 enemyPos = enemyScript.transform.position;
         Vector3 directionToPlayer = (playerPos - enemyPos).normalized;
