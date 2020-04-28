@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public bool isOpen = false;
+    public bool enable = false;
     public Sprite sprite;
 
     private SpriteRenderer sr;
@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     {
         sr = gameObject.GetComponent<SpriteRenderer>();
         collider = gameObject.GetComponent<BoxCollider2D>();
-        if (isOpen) {
+        if (enable) {
             sr.sprite = null;
             collider.isTrigger = true;
         }
@@ -23,7 +23,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isOpen) {
+        if (enable) {
             sr.sprite = null;
             collider.isTrigger = true;
         }

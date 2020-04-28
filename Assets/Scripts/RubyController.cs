@@ -53,6 +53,7 @@ public class RubyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        dashTime = startDashTime;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -64,6 +65,7 @@ public class RubyController : MonoBehaviour
 
         melee = sword.GetComponent<MeleeWeapon>();
         sword.GetComponent<PolygonCollider2D>().enabled = false;
+        dashTime = startDashTime;
     }
 
     private void Update()
@@ -79,6 +81,12 @@ public class RubyController : MonoBehaviour
             dash = true;
             Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
+
+
+        if (attackTime > 0)
+            attackTime -= Time.deltaTime;
+
+        Stab();
 
         if (Input.GetButtonDown("Fire1"))
             Launch();
@@ -96,11 +104,11 @@ public class RubyController : MonoBehaviour
             stabPos = mousePos;
             stabDir = mouseDir;
         }
-        Stab();
+        
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Debug.Log("I talk to something");
+            Debug.Log("I try to talk to something");
             RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
             if (hit.collider != null)
             {
@@ -196,7 +204,6 @@ public class RubyController : MonoBehaviour
     {
         dashTime -= Time.deltaTime;
         rigidbody2d.AddForce(move.normalized * dashSpeed);
-        //rigidbody2d.velocity = move.normalized * dashSpeed;
         if (dashTime < 0)
         {
             dashTime = startDashTime;
@@ -233,7 +240,7 @@ public class RubyController : MonoBehaviour
             sword.GetComponent<PolygonCollider2D>().enabled = true;
             sword.position = pos + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack, 2);
 
-            attackTime -= Time.deltaTime;
+            
         }
         else
         {

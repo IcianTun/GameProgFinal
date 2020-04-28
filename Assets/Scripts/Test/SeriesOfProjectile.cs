@@ -12,14 +12,10 @@ public class SeriesOfProjectile : Attack
 
     List<GameObject> projectiles;
     Animator animator;
-    
-    private void Start()
-    {
-        
-    }
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
+        yield return new WaitForSeconds(1);
         projectiles = new List<GameObject>();
 
         if (animator == null)
@@ -30,7 +26,6 @@ public class SeriesOfProjectile : Attack
         Vector2 directionToPlayer = (playerPos - enemyPos).normalized;
 
         animator.SetFloat("Move X", directionToPlayer.x);
-        animator.SetFloat("Move Y", directionToPlayer.y);
 
         int space = numberOfProjectile - 1;
         for (int i = 0; i < numberOfProjectile; i++)
@@ -49,7 +44,6 @@ public class SeriesOfProjectile : Attack
             }
             projectile.DelayLaunch(dir, 600, delayStartTime);
         }
-
 
         yield return base.Perform(enemyScript);
     }

@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     #endregion
 
     //protected variable for child class
+
+    [SerializeField]
     protected int currentHealth;
     protected bool isInvincible;
     protected float invincibleTimer;
@@ -32,6 +34,8 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
     protected Vector2 lookDirection = new Vector2(1, 0);
 
+    public float HpPercent { get { return (float)currentHealth / maxHealth; } }
+
     protected virtual void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -39,52 +43,16 @@ public class Enemy : MonoBehaviour
 
         currentHealth = maxHealth;
     }
-
-    public void Initiate(int hp, float speed, float iframe)
-    {
-        this.maxHealth = hp;
-        this.speed = speed;
-        this.timeInvincible = iframe;
-    }
+    
 
     protected virtual void Update()
     {
-        //ded
         if (currentHealth == 0)
         {
-            //animator.SetTrigger("Fixed");
             Destroy(gameObject);
             return;
-            //or
         }
-        /*
-         if (player == null)
-            return;
-
-
-        //calculate from player pos
-        Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
-        Vector2 position = rigidbody2d.position;
-
-        float horizontal = playerPos.x - position.x;
-        float vertical = playerPos.y - position.y;
-
-        Vector2 move = new Vector2(horizontal, vertical);
-
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
-        {
-            lookDirection.Set(move.x, move.y);
-            lookDirection.Normalize();
-        }
-
-        animator.SetFloat("Move X", lookDirection.x);
-        animator.SetFloat("Move Y", lookDirection.y);
-
-
-        position = position + move * speed * Time.deltaTime;
-
-        rigidbody2d.MovePosition(position);
-        */
+       
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -119,7 +87,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount)
     {
         if (amount < 0)
         {
@@ -144,4 +112,25 @@ public void ChangeHealth(int amount)
             player.ChangeHealth(-1);
         }
     }
+
+
+    public void MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        StartCoroutine(_MoveToPosition(targetPosition, timeToMove, delay));
+    }
+
+    private IEnumerator _MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        var currentPos = transform.position;
+        var t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / timeToMove;
+            transform.position = Vector3.Lerp(currentPos, targetPosition, t);
+            yield return null;
+        }
+    }
+
 }

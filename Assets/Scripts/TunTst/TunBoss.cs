@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class TunBoss : Enemy
 {
-    protected override void Start()
-    {
-        base.Initiate(10, 3.0f, 2.0f);
-        base.Start();
-    }
+    public Transform center;
 
 
 }
