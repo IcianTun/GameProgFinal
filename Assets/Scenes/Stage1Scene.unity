@@ -463,7 +463,7 @@ PrefabInstance:
     - target: {fileID: 3229180958611922454, guid: 3fae017b0e9de8644a909b8683f3a2d6,
         type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3240856557592151925, guid: 3fae017b0e9de8644a909b8683f3a2d6,
         type: 3}
@@ -3206,7 +3206,7 @@ PrefabInstance:
     - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: maxHealth
-      value: 500
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307517, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
@@ -3216,12 +3216,12 @@ PrefabInstance:
     - target: {fileID: 2242297921281307519, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.68
+      value: -4.11
       objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307519, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.61
+      value: -1.07
       objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307519, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
@@ -20207,7 +20207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxHealth: 20
+  maxHealth: 4
   timeInvincible: 2
   enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
@@ -20880,7 +20880,7 @@ PrefabInstance:
     - target: {fileID: 3229180958611922454, guid: 3fae017b0e9de8644a909b8683f3a2d6,
         type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3240856557592151925, guid: 3fae017b0e9de8644a909b8683f3a2d6,
         type: 3}
@@ -21218,7 +21218,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210462137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.68, y: 9.61, z: -10}
+  m_LocalPosition: {x: -4.11, y: -1.07, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1107217404}
@@ -22667,7 +22667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1688780108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5093918, y: 0.97409534, z: -10}
+  m_LocalPosition: {x: -1.1695323, y: 0.12509024, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

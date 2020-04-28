@@ -1,0 +1,340 @@
+fileFormatVersion: 2
+guid: cc0a37379f2284b4ba48da2142d7f84e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8578613057787193537
+    second: froggy_0
+  - first:
+      213: 2882741723537886930
+    second: froggy_1
+  - first:
+      213: 9133628275923696308
+    second: froggy_2
+  - first:
+      213: 8920371505319856835
+    second: froggy_3
+  - first:
+      213: -5516187164584855775
+    second: froggy_4
+  - first:
+      213: 4835908475181116235
+    second: froggy_5
+  - first:
+      213: -9099314614432714466
+    second: froggy_6
+  - first:
+      213: -358941639505268217
+    second: froggy_7
+  - first:
+      213: -979624211073123303
+    second: froggy_8
+  - first:
+      213: 8292895518613574531
+    second: froggy_9
+  - first:
+      213: -4166762545265489582
+    second: froggy_10
+  - first:
+      213: -8461244546186246768
+    second: froggy_11
+  - first:
+      213: -4774946602318667702
+    second: froggy_12
+  - first:
+      213: 1332383688094397886
+    second: froggy_13
+  - first:
+      213: -4465893612037486023
+    second: froggy_14
+  - first:
+      213: -3600381517657341753
+    second: froggy_0
+  - first:
+      213: -5675837145627556870
+    second: froggy_1
+  - first:
+      213: 5147769233687892971
+    second: froggy_2
+  - first:
+      213: -5697823712180533762
+    second: froggy_3
+  - first:
+      213: 1683392030046055039
+    second: froggy_4
+  - first:
+      213: -4857024057768054273
+    second: froggy_5
+  - first:
+      213: 4676158804037743198
+    second: froggy_6
+  - first:
+      213: 6032794136247590926
+    second: froggy_7
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: froggy_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 82
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c00728d510e80ec0800000000000000
+      internalID: -3600381517657341753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 82
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af307eb10306b31b0800000000000000
+      internalID: -5675837145627556870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 82
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3d6af08dc807740800000000000000
+      internalID: 5147769233687892971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 82
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef58eaaa5834de0b0800000000000000
+      internalID: -5697823712180533762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 18
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7a6e90e12c9c5710800000000000000
+      internalID: 1683392030046055039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_5
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 18
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff175336a52689cb0800000000000000
+      internalID: -4857024057768054273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_6
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 18
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e523cfb28ad05e040800000000000000
+      internalID: 4676158804037743198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: froggy_7
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 18
+        width: 42
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e00e816cd4ac8b350800000000000000
+      internalID: 6032794136247590926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
