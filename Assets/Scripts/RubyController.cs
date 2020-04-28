@@ -31,12 +31,18 @@ public class RubyController : MonoBehaviour
     public float dashSpeed;
     private float dashTime;
     public float startDashTime;
+    public float cooldownDash;
+    private float dashCdTimer = 0;
+
     bool dash;
+
+    public float cooldownLaunch;
+    private float launchCdTimer = 0;
 
     public GameObject dashEffect;
 
     //stab
-    public float attackTime;
+    private float attackTime;
     public float startTimeAttack;
 
     public Transform sword;
@@ -76,8 +82,9 @@ public class RubyController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
         move = new Vector2(horizontal, vertical).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero)
+        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero && dashCdTimer<= 0)
         {
+            dashCdTimer = cooldownDash;
             dash = true;
             Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
@@ -86,10 +93,19 @@ public class RubyController : MonoBehaviour
         if (attackTime > 0)
             attackTime -= Time.deltaTime;
 
+        if (launchCdTimer > 0)
+            launchCdTimer -= Time.deltaTime;
+
+        if (dashCdTimer > 0)
+            dashCdTimer -= Time.deltaTime;
+
         Stab();
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && launchCdTimer <= 0)
+        {
+            launchCdTimer = cooldownLaunch;
             Launch();
+        }
         else if (Input.GetButton("Fire2") && attackTime <= 0)
         {
             if (!Mathf.Approximately(mouseDir.x, 0.0f) || !Mathf.Approximately(mouseDir.y, 0.0f))
@@ -192,10 +208,10 @@ public class RubyController : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.3f + lookDirection*0.6f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
+        projectile.Launch(lookDirection, 900);
 
         animator.SetTrigger("Launch");
     }

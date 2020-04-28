@@ -14,7 +14,23 @@ public class ScenceController : MonoBehaviour
     }
 
     void TaskOnClick(){
-		Debug.Log ("load scence");
-        SceneManager.LoadScene(0);
+        switch (SceneMgr.currentScene)
+        {
+            case SceneName.MezScene:
+                SceneManager.LoadScene("MezScene");
+                break;
+            case SceneName.MawinScene:
+                SceneManager.LoadScene("Stage1Scene");
+                break;
+            case SceneName.TunScene:
+                SceneManager.LoadScene("TunScene");
+                break;
+            case SceneName.FightScene:
+                SceneManager.LoadScene("FightScene");
+                break;
+            case SceneName.ZezeScene:
+                SceneManager.LoadScene("ZezeScene");
+                break;
+        }
 	}
 }

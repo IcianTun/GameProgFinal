@@ -34,14 +34,14 @@ public class JambiBoss : Enemy
                 Vector2 position = rigidbody2d.position;
                 Vector2 move = new Vector2(0, 9);
                 position = position + move;
-                rigidbody2d.MovePosition(position);
+                MoveToPosition(position, 0.01f, 0);
             }
             if (state % 4 == 1)
             {
                 Vector2 position = rigidbody2d.position;
                 Vector2 move = new Vector2(12, 0);
                 position = position + move;
-                rigidbody2d.MovePosition(position);
+                MoveToPosition(position, 0.01f, 0);
             }
 
             if (state % 4 == 2)
@@ -49,7 +49,7 @@ public class JambiBoss : Enemy
                 Vector2 position = rigidbody2d.position;
                 Vector2 move = new Vector2(0, -9);
                 position = position + move;
-                rigidbody2d.MovePosition(position);
+                MoveToPosition(position, 0.01f, 0);
             }
 
             if (state % 4 == 3)
@@ -57,7 +57,8 @@ public class JambiBoss : Enemy
                 Vector2 position = rigidbody2d.position;
                 Vector2 move = new Vector2(-12, 0);
                 position = position + move;
-                rigidbody2d.MovePosition(position);
+
+                MoveToPosition(position, 0.01f, 0);
             }
 
         }
@@ -82,7 +83,10 @@ public class JambiBoss : Enemy
         {
             state = (state + 1) % 4;
             lastHealth = health;
-
+            if (state == 0)
+            {
+                //TODO: change attacking script
+            }
         }
         return state;
     }
