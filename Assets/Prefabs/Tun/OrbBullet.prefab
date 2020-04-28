@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1343181929769483231}
   - component: {fileID: 4302996503066658016}
+  - component: {fileID: -7732237990472760221}
   - component: {fileID: 340320824}
   - component: {fileID: 4925097805134149169}
   - component: {fileID: -362836330335101567}
-  - component: {fileID: 2964564613829447139}
   m_Layer: 12
-  m_Name: Bubble_RB
+  m_Name: OrbBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9169493506654029158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -57.21, y: -8.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1590298669
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3376612935087498247, guid: b59be47d4297bd44f8cc12d5ccd93f02,
+  m_Sprite: {fileID: 2723176700914664728, guid: 2a78c2af956e10940881994113dd9785,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,6 +86,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-7732237990472760221
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169493506654029158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 19f1628fcfd6418409381c3f794ebf9f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!58 &340320824
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,17 +154,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2964564613829447139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9169493506654029158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0489ee7d9311d9e40a8aed38dbef0e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  hiddenItem: {fileID: 0}

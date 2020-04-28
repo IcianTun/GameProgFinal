@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float timeInvincible;
 
     public int health { get { return currentHealth; } }
+    public EnemyHealthBar enemyHealthBar;
 
     //test need to change to private and find in own room
     public GameObject player;
@@ -42,17 +43,45 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
 
         currentHealth = maxHealth;
+        enemyHealthBar = GetComponent<EnemyHealthBar>();
     }
     
 
     protected virtual void Update()
     {
-        if (currentHealth == 0)
+        ////ded
+        //if (currentHealth == 0)
+        //{
+        //    //animator.SetTrigger("Fixed");
+        //    Destroy(gameObject);
+        //    return;
+        //    //or
+        //}
+        /*
+
+        //calculate from player pos
+        Vector2 playerPos = player.GetComponent<Rigidbody2D>().position;
+        Vector2 position = rigidbody2d.position;
+
+        float horizontal = playerPos.x - position.x;
+        float vertical = playerPos.y - position.y;
+
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
         {
-            Destroy(gameObject);
-            return;
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
         }
-       
+
+        animator.SetFloat("Move X", lookDirection.x);
+        animator.SetFloat("Move Y", lookDirection.y);
+
+
+        position = position + move * speed * Time.deltaTime;
+
+        rigidbody2d.MovePosition(position);
+        */
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -67,8 +96,14 @@ public class Enemy : MonoBehaviour
             if (nextAttackReady && attackList.Count > 0)
             {
                 nextAttackReady = false;
+                
                 int a = Random.Range(0, attackList.Count);
                 Attack attack = attackList[a];
+                while (attackList.Count > 1 && attack == currentAttack)
+                {
+                    int b = Random.Range(0, attackList.Count);
+                    attack = attackList[b];
+                }
                 currentAttack = attack;
                 StartCoroutine(attack.Perform(this));
                 //waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
@@ -100,7 +135,14 @@ public class Enemy : MonoBehaviour
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+
+        enemyHealthBar.SetValue(currentHealth / (float)maxHealth);
         Debug.Log(currentHealth);
+        if (currentHealth == 0 )
+        {
+            Unlock();
+            Destroy(gameObject);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -111,6 +153,11 @@ public class Enemy : MonoBehaviour
         {
             player.ChangeHealth(-1);
         }
+    }
+
+    virtual protected void Unlock()
+    {
+
     }
 
 
