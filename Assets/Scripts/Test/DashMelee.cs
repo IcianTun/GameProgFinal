@@ -21,7 +21,7 @@ public class DashMelee : Attack
 
     override public IEnumerator Perform(Enemy enemyScript)
     {
-
+        yield return new WaitForSeconds(1);
         if (animator == null)
             animator = enemyScript.GetComponent<Animator>();
 
