@@ -139,7 +139,8 @@ public class Enemy : MonoBehaviour
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
 
-        enemyHealthBar.SetValue(currentHealth / (float)maxHealth);
+        if (enemyHealthBar)
+            enemyHealthBar.SetValue(currentHealth / (float)maxHealth);
 
         if (currentHealth == 0 )
         {

@@ -34612,7 +34612,17 @@ PrefabInstance:
     - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: dashSpeed
-      value: 500
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
+        type: 3}
+      propertyPath: cooldownDash
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
+        type: 3}
+      propertyPath: cooldownLaunch
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307517, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
@@ -35050,7 +35060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1371775482
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -38949,6 +38959,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1695519363}
+  - component: {fileID: 1695519364}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -38970,6 +38981,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1695519364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695519362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826dca78938ece443b85343545fd43f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisScene: 4
 --- !u!1001 &1708353277
 PrefabInstance:
   m_ObjectHideFlags: 0

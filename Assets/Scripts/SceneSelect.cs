@@ -7,6 +7,7 @@ public class SceneSelect : MonoBehaviour
 {
     public void SelectScene()
     {
+        Time.timeScale = 1;
         switch (this.gameObject.name)
         {
             case "Scene1Button":
