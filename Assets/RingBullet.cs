@@ -13,12 +13,14 @@ public class RingBullet : Attack
     public float offsetAngle = 0;
     public float bendAngle = 0;
     public bool focus;
-
+    public float color;
     private float rotatingSpeed;
     
 
     List<GameObject> projectiles;
     Animator animator;
+    Animator bulletAnimator;
+
 
     private void Start()
     {
@@ -35,7 +37,6 @@ public class RingBullet : Attack
 
         if (animator == null)
             animator = enemyScript.GetComponent<Animator>();
-
         Vector3 playerPos = enemyScript.player.transform.position;
         Vector3 enemyPos = enemyScript.transform.position;
         Vector3 directionToPlayer = (playerPos - enemyPos).normalized;
@@ -50,6 +51,10 @@ public class RingBullet : Attack
         {
             offsetAngle += rotatingSpeed;
             directionToPlayer = new Vector3(1, 1, 1).normalized;
+        }
+        if (angleType == angleType.Fixed)
+        {
+            directionToPlayer = new Vector3(0, 1, 1).normalized;
         }
         if (angleType == angleType.Cone)
         {
@@ -68,6 +73,9 @@ public class RingBullet : Attack
                 dir = (playerPos - bulletPos).normalized;
             }
             projectile.DelayLaunch(Quaternion.Euler(0, 0, i * angle + offsetAngle + bendAngle) * dir, bulletSpeed*100f, delayStartTime);
+
+            bulletAnimator = projectileObject.GetComponent<Animator>();
+            bulletAnimator.SetFloat("Color", color);
         }
         yield return base.Perform(enemyScript);
     }

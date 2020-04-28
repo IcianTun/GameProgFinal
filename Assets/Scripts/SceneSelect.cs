@@ -26,4 +26,9 @@ public class SceneSelect : MonoBehaviour
                 break;
         }
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

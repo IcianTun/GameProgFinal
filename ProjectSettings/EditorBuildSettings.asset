@@ -17,4 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 7b91e4a2762a59a419f90b2a8befc5be
+  - enabled: 1
+    path: Assets/Scenes/ZezeScene.unity
+    guid: 63dd597b7f6351746bbabafecf9a926c
+  - enabled: 1
+    path: Assets/Scenes/TunScene.unity
+    guid: 182634b85bcf38548ab6a8ff705dd678
+  - enabled: 1
+    path: Assets/Scenes/Stage1Scene.unity
+    guid: acb66ea91c5bcbc409253036f0be7e67
   m_configObjects: {}

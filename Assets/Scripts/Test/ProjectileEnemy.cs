@@ -6,14 +6,19 @@ public class ProjectileEnemy : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
 
+    Vector2 awakePos;
+
     void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
+        awakePos = new Vector2(transform.position.x, transform.position.y);
     }
 
     void Update()
     {
-        if (transform.position.magnitude > 100.0f)
+        Vector2 current = new Vector2(transform.position.x, transform.position.y);
+        //if (transform.position.magnitude > 1000.0f)
+        if (Vector2.Distance(awakePos, current) > 20)
         {
             Destroy(gameObject);
         }
