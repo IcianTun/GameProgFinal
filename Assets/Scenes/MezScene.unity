@@ -763,6 +763,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 2004806044}
@@ -1750,6 +1751,105 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &545871026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 545871027}
+  - component: {fileID: 545871030}
+  - component: {fileID: 545871029}
+  - component: {fileID: 545871028}
+  m_Layer: 5
+  m_Name: Healthbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &545871027
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545871026}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 693747263}
+  m_Father: {fileID: 163849679664705209}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.18, y: 1.07}
+  m_SizeDelta: {x: 5, y: 5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &545871028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545871026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &545871029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545871026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &545871030
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545871026}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: -423887383
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &587899840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +2017,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1967087614}
@@ -1924,6 +2025,80 @@ MonoBehaviour:
   nextAttackReady: 1
   tstVector2PlayerPos: {x: 0, y: 0}
   currentHealth: 0
+--- !u!1 &693747262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 693747263}
+  - component: {fileID: 693747265}
+  - component: {fileID: 693747264}
+  m_Layer: 5
+  m_Name: Blackbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &693747263
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693747262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1780002496}
+  m_Father: {fileID: 545871027}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 4.06, y: 0.3}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &693747264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693747262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 5e4702abd3ccf4b48bcfca70cd171b45, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &693747265
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693747262}
+  m_CullTransparentMesh: 0
 --- !u!1 &711959896
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,6 +3712,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1333995919}
@@ -3730,7 +3906,7 @@ PrefabInstance:
     - target: {fileID: 2200590188823993639, guid: 849ec85f7fe9480459573c037c1d6d04,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2200590188823993639, guid: 849ec85f7fe9480459573c037c1d6d04,
         type: 3}
@@ -4436,6 +4612,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 897552712}
@@ -6284,6 +6461,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 172191512}
@@ -6397,6 +6575,79 @@ Canvas:
   m_SortingLayerID: -423887383
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!1 &1780002493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780002496}
+  - component: {fileID: 1780002495}
+  - component: {fileID: 1780002494}
+  m_Layer: 5
+  m_Name: Greenbar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1780002494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780002493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6fc2cd9b868b03b47b1c91c6c29fd4b0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1780002495
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780002493}
+  m_CullTransparentMesh: 0
+--- !u!224 &1780002496
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780002493}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
+  m_Children: []
+  m_Father: {fileID: 693747263}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.021210019, y: 0.5}
+  m_AnchorMax: {x: 0.96460694, y: 0.5}
+  m_AnchoredPosition: {x: 0.0000010728836, y: 0.0048}
+  m_SizeDelta: {x: -0.0000030994, y: 0.1952}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!1001 &1787203287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6494,6 +6745,16 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
+        type: 3}
+      propertyPath: cooldownLaunch
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
+        type: 3}
+      propertyPath: cooldownDash
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307517, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: m_Name
@@ -6814,6 +7075,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1520313709}
@@ -6921,8 +7183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 167.3, y: -76.5}
-  m_SizeDelta: {x: 334.5, y: 154}
+  m_AnchoredPosition: {x: 110.2, y: -50.22}
+  m_SizeDelta: {x: 220.2, y: 101.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914712106
 MonoBehaviour:
@@ -7128,6 +7390,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 714510775}
@@ -7505,6 +7768,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1855527485}
@@ -8037,6 +8301,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 943695543}
@@ -36451,7 +36716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   executionTime: 2
   attackName: 
-  projectilePrefab: {fileID: 8002005404733687776, guid: cd869a5b46acdb142948e2b88f323a28,
+  projectilePrefab: {fileID: 8002005404733687776, guid: 402383e8a7a174a4585fa946a33f6027,
     type: 3}
   numberOfProjectile: 5
   delayStartTime: 0.5
@@ -36639,6 +36904,7 @@ MonoBehaviour:
   speed: 3
   maxHealth: 5
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1162837959}
@@ -36805,8 +37071,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.08968611, y: 0}
   m_AnchorMax: {x: 0.39023018, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -54}
+  m_AnchoredPosition: {x: 0, y: 0.47999954}
+  m_SizeDelta: {x: 0, y: -33.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2136483401
 MonoBehaviour:
@@ -36859,6 +37125,7 @@ Transform:
   - {fileID: 2076898048}
   - {fileID: 1439051510}
   - {fileID: 1562746304}
+  - {fileID: 545871027}
   m_Father: {fileID: 890323983}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37166,7 +37433,7 @@ MonoBehaviour:
   - {fileID: 276897199}
   enemies:
   - {fileID: 6791212070278399333}
-  cameraYSize: 7
+  cameraYSize: 6
   canRevert: 1
   hostageLocation: {fileID: 8113620}
 --- !u!4 &1677302414937197534
@@ -38185,6 +38452,7 @@ GameObject:
   - component: {fileID: 8944915971336574100}
   - component: {fileID: 3813694197677069718}
   - component: {fileID: 7064375467673014331}
+  - component: {fileID: 6791212070278399335}
   m_Layer: 13
   m_Name: Boss
   m_TagString: Untagged
@@ -38205,8 +38473,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  maxHealth: 20
+  maxHealth: 40
   timeInvincible: 0.5
+  enemyHealthBar: {fileID: 0}
   player: {fileID: 0}
   attackList:
   - {fileID: 1064283920}
@@ -38218,6 +38487,19 @@ MonoBehaviour:
   tstVector2PlayerPos: {x: 0, y: 0}
   currentHealth: 0
   winningZone: {fileID: 331195422}
+--- !u!114 &6791212070278399335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791212070278399333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6265923bda477ce4c86b783bdc3cef9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: {fileID: 1780002494}
 --- !u!224 &7057407675717555781
 RectTransform:
   m_ObjectHideFlags: 0
