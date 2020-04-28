@@ -15,7 +15,8 @@ public class ArrayOfOrb : Attack
         TunBoss tunBoss = (TunBoss)enemyScript;
         if (tunBoss.center)
         {
-            tunBoss.MoveToPosition(tunBoss.center.position, 1, 0);
+            tunBoss.MoveToPosition(tunBoss.center.position, 0.5f, 0);
+            yield return new WaitForSeconds(1f);
         }
 
 
