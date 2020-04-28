@@ -30,4 +30,5 @@ public class Pushable : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
         }
     }
+
 }
