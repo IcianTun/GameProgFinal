@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 340320824}
   - component: {fileID: 4925097805134149169}
   - component: {fileID: -362836330335101567}
-  - component: {fileID: 2964564613829447139}
   - component: {fileID: 1268124723138639961}
   m_Layer: 12
   m_Name: Bubble_RB
@@ -136,20 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2964564613829447139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9169493506654029158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0489ee7d9311d9e40a8aed38dbef0e17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  hiddenItem: {fileID: 0}
 --- !u!95 &1268124723138639961
 Animator:
   serializedVersion: 3
