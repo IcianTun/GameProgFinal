@@ -39,6 +39,8 @@ public class Hostage : MonoBehaviour
     bool reachedEndOfPath = false;
 
     public bool rescued = false;
+    public EnemyHealthBar healthBar;
+    public GameObject healthBarObj;
 
     void Start()
     {
@@ -98,7 +100,10 @@ public class Hostage : MonoBehaviour
         {
             delay += Time.deltaTime;
             if (delay >= delayAfterRescue)
+            {
                 rescued = true;
+                healthBarObj.SetActive(true);
+            }
         }
 
         if (currentWaypoint >= path.vectorPath.Count)
@@ -160,6 +165,8 @@ public class Hostage : MonoBehaviour
             invincibleTimer = timeInvincible;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth);
+
+        if (healthBar)
+            healthBar.SetValue(currentHealth / (float)maxHealth);
     }
 }
