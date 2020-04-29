@@ -34624,6 +34624,11 @@ PrefabInstance:
       propertyPath: cooldownLaunch
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2242297921281307504, guid: bf943001054b5ba478e660fa1bd16591,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2242297921281307517, guid: bf943001054b5ba478e660fa1bd16591,
         type: 3}
       propertyPath: m_Name
