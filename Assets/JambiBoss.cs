@@ -126,6 +126,7 @@ public class JambiBoss : Enemy
     protected override void Unlock()
     {
         key.setActive(false);
+        key.unLock();
 
     }
 
