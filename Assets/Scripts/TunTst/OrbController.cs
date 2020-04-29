@@ -35,7 +35,7 @@ public class OrbController : MonoBehaviour
         var xPos = Mathf.Sin(myTime * circleMoveSpeed + offsetAngle * Mathf.Deg2Rad) * circleSize;
         var yPos = Mathf.Cos(myTime * circleMoveSpeed + offsetAngle * Mathf.Deg2Rad) * circleSize;
 
-        circleSize += circleGrowSpeed;
+        circleSize += circleGrowSpeed * Time.deltaTime;
         transform.position = new Vector3(xPos, yPos,0) + centerPos;
 
         myTime += Time.deltaTime;

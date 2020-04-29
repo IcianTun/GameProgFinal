@@ -147,6 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleMoveSpeed: 1
   circleSize: 0.5
-  circleGrowSpeed: 0.025
+  circleGrowSpeed: 1.2
   centerPos: {x: 0, y: 0, z: 0}
   offsetAngle: 0
