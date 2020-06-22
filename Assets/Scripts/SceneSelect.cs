@@ -20,10 +20,10 @@ public class SceneSelect : MonoBehaviour
                 SceneManager.LoadScene("TunScene");
                 break;
             case "Scene4Button":
-                SceneManager.LoadScene("FightScene");
+                SceneManager.LoadScene("ZezeScene");
                 break;
             case "Scene5Button":
-                SceneManager.LoadScene("ZezeScene");
+                SceneManager.LoadScene("FightScene");
                 break;
         }
     }

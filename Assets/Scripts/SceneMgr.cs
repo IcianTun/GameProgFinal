@@ -18,6 +18,6 @@ public enum SceneName
     MezScene,
     MawinScene,
     TunScene,
-    FightScene,
-    ZezeScene
+    ZezeScene,
+    FightScene
 }

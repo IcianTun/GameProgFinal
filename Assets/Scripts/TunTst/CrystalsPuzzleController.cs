@@ -18,6 +18,11 @@ public class CrystalsPuzzleController : MonoBehaviour
     public int currentIndex = 0;
     private bool locked = true;
 
+
+    public AudioClip collectSoundClip;
+    public RubyController ruby;
+
+
     private void Start()
     {
         currentIndex = 0;
@@ -44,6 +49,8 @@ public class CrystalsPuzzleController : MonoBehaviour
 
     void Unlock()
     {
+
+        ruby.PlaySound(collectSoundClip);
         lockObject.enable = true;
         locked = false;
 

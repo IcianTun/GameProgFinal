@@ -150,11 +150,11 @@ public class Enemy : MonoBehaviour
     }
     IEnumerator PlayFlickerAnimation()
     {
-        Debug.Log("Enter flick!");
+        //Debug.Log("Enter flick!");
         bool tst = false;
         while (isInvincible)
         {
-            Debug.Log("flick!");
+            //Debug.Log("flick!");
             spriteRenderer.enabled = tst;
             yield return new WaitForSeconds(0.1f);
             tst = !tst ;

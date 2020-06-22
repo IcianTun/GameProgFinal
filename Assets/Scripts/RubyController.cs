@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class RubyController : MonoBehaviour
 {
     public float speed = 5.0f;
@@ -19,22 +20,27 @@ public class RubyController : MonoBehaviour
 
     Vector2 mousePos;
     Vector2 mouseDir;
-    Vector2 move;
+    Vector2 moveDir;
 
     Rigidbody2D rigidbody2d;
     AudioSource audioSource;
+    public AudioClip throwSound;
+    public AudioClip rubyHitSound;
 
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
     //dash test
     public float dashSpeed;
-    private float dashTime;
-    public float startDashTime;
+    public float dashTime;
+    private float dashTimer;
     public float cooldownDash;
     private float dashCdTimer = 0;
+    private float dashAfterImageTimeInterval = 0.1f;
+    private float lastAfterImageTime;
 
-    bool dash;
+
+    bool isDashing;
 
     public float cooldownLaunch;
     private float launchCdTimer = 0;
@@ -59,7 +65,6 @@ public class RubyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dashTime = startDashTime;
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -71,7 +76,7 @@ public class RubyController : MonoBehaviour
 
         melee = sword.GetComponent<MeleeWeapon>();
         sword.GetComponent<PolygonCollider2D>().enabled = false;
-        dashTime = startDashTime;
+        dashTimer = dashTime;
     }
 
     private void Update()
@@ -80,13 +85,13 @@ public class RubyController : MonoBehaviour
 
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        move = new Vector2(horizontal, vertical).normalized;
+        moveDir = new Vector2(horizontal, vertical).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space) && !dash && move != Vector2.zero && dashCdTimer<= 0)
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && moveDir != Vector2.zero && dashCdTimer <= 0)
         {
             dashCdTimer = cooldownDash;
-            dash = true;
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            isDashing = true;
+            lastAfterImageTime = 0;
         }
 
 
@@ -142,24 +147,33 @@ public class RubyController : MonoBehaviour
                         hostage.Heal(this);
                 }
             }
-        } 
+        }
+
+        if (isDashing && Time.time > lastAfterImageTime + dashAfterImageTimeInterval)
+        {
+            lastAfterImageTime = Time.time;
+            GameObject afterImage = AfterImagePool.Instance.GetFromPool();
+            afterImage.GetComponent<PlayerDashAfterImage>().Player = gameObject;
+        }
+
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        if (!Mathf.Approximately(moveDir.x, 0.0f) || !Mathf.Approximately(moveDir.y, 0.0f))
         {
-            lookDirection.Set(move.x, move.y);
+            lookDirection.Set(moveDir.x, moveDir.y);
             //lookDirection.Normalize();
         }
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
-        animator.SetFloat("Speed", move.magnitude);
+        animator.SetFloat("Speed", moveDir.magnitude);
 
         Vector2 position = rigidbody2d.position;
 
-        position = position + move.normalized * speed * Time.deltaTime;
+        position = position + moveDir.normalized * speed * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
 
@@ -172,7 +186,7 @@ public class RubyController : MonoBehaviour
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (dash)
+        if (isDashing)
         {
             Dash();
         }
@@ -185,7 +199,7 @@ public class RubyController : MonoBehaviour
             if (isInvincible)
                 return;
             animator.SetTrigger("Hit");
-
+            PlaySound(rubyHitSound);
             isInvincible = true;
             invincibleTimer = timeInvincible;
         }
@@ -206,22 +220,22 @@ public class RubyController : MonoBehaviour
             lookDirection.Normalize();
         }
 
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.3f + lookDirection*0.6f, Quaternion.identity);
+        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f + lookDirection*1.3f, Quaternion.identity);
 
         Projectile projectile = projectileObject.GetComponent<Projectile>();
         projectile.Launch(lookDirection, 900);
-
+        PlaySound(throwSound);
         animator.SetTrigger("Launch");
     }
 
     void Dash()
     {
-        dashTime -= Time.deltaTime;
-        rigidbody2d.AddForce(move.normalized * dashSpeed);
-        if (dashTime < 0)
+        dashTimer -= Time.deltaTime;
+        rigidbody2d.AddForce(moveDir.normalized * dashSpeed);
+        if (dashTimer < 0)
         {
-            dashTime = startDashTime;
-            dash = false;
+            dashTimer = dashTime;
+            isDashing = false;
         }
 
     }
@@ -252,22 +266,23 @@ public class RubyController : MonoBehaviour
             offset = new Vector2(Mathf.Sin(rad), Mathf.Cos(rad));
             renderer.enabled = true;
             sword.GetComponent<PolygonCollider2D>().enabled = true;
-            sword.position = pos + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack, 2);
+            sword.position = pos + Vector2.up * 0.5f + offset - stabDir * Mathf.Pow(attackTime / startTimeAttack, 2);
+            sword.rotation = Quaternion.Euler(0, 0, 45 - angle);
 
-            
         }
         else
         {
             sword.GetComponent<PolygonCollider2D>().enabled = false;
 
             renderer.enabled = false;
-            sword.position = pos + offset + new Vector2(0, 0.5f);
-            sword.rotation = Quaternion.Euler(0, 0, 45 - angle);
+            sword.position = new Vector3(0, 0,-20);
+            //sword.rotation = Quaternion.Euler(0, 0, 45 - angle);
         }
     }
 
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
+
     }
 }

@@ -6,6 +6,10 @@ public class MezBoss : Enemy
 {
     public GameObject winningZone;
 
+    public AudioClip collectSoundClip;
+    public RubyController ruby;
+
+
     // Update is called once per frame
     protected override void Update()
     {
@@ -15,6 +19,7 @@ public class MezBoss : Enemy
 
     override protected void Unlock()
     {
+        ruby.PlaySound(collectSoundClip);
         winningZone.SetActive(true);
 
     }

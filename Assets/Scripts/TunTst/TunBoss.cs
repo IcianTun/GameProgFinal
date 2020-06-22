@@ -8,8 +8,14 @@ public class TunBoss : Enemy
     public Transform center;
     public TunBossRoomController roomController;
 
+
+    public AudioClip collectSoundClip;
+    public RubyController ruby;
+
+
     protected override void Unlock()
     {
+        ruby.PlaySound(collectSoundClip);
         roomController.Lock = false;
     }
 

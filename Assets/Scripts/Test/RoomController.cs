@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+    public PolygonCollider2D confinerShape;
     public Cinemachine.CinemachineConfiner confiner;
     public Cinemachine.CinemachineVirtualCamera virtualCamera;
 
@@ -57,7 +58,14 @@ public class RoomController : MonoBehaviour
             {
                 virtualCamera.m_Lens.OrthographicSize = cameraYSize;
 
-                confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+                if (confinerShape)
+                {
+                    confiner.m_BoundingShape2D = confinerShape;
+                }
+                else {
+                    confiner.m_BoundingShape2D = GetComponent<PolygonCollider2D>();
+                }
+
                 confiner.InvalidatePathCache();
             }
  

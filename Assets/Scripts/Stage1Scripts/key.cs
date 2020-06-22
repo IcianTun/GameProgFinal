@@ -13,6 +13,9 @@ public class key: NonPlayerCharacter
     BoxCollider2D Collider2D;
     SpriteRenderer Renderer;
 
+    public AudioClip collectSoundClip;
+    public RubyController ruby;
+
     private void Start()
     {
         Collider2D = GetComponent<BoxCollider2D>();
@@ -21,8 +24,10 @@ public class key: NonPlayerCharacter
 
     public void unLock()
     {
-        foreach(Lock l in lockList)
+        ruby.PlaySound(collectSoundClip);
+        foreach (Lock l in lockList)
         {
+            l.gameObject.SetActive(false);
             l.GetComponent<BoxCollider2D>().enabled = false;
         }
         if (Collider2D != null)

@@ -298,17 +298,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51543a771fedfd48beed32001e6cdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  maxHealth: 5
+  speed: 5
+  maxHealth: 8
   timeInvincible: 2
   projectilePrefab: {fileID: 8002005404733687776, guid: 23c78043ab8fe74428e643c8b54a5477,
     type: 3}
   cam: {fileID: 0}
-  dashSpeed: 500
-  startDashTime: 0.3
+  throwSound: {fileID: 8300000, guid: b2edfd40873655249ba0e01a5cf705be, type: 3}
+  rubyHitSound: {fileID: 8300000, guid: 9b1bb1f450b7d444fa4a8019d13519a7, type: 3}
+  dashSpeed: 400
+  dashTime: 0.3
+  cooldownDash: 0.6
+  cooldownLaunch: 0.2
   dashEffect: {fileID: 7900393059466025194, guid: 98459ecd617b36d43bc4c484e88b9d0c,
     type: 3}
-  attackTime: 0
   startTimeAttack: 0.3
   sword: {fileID: 1307770602}
   attackRange: 0.4

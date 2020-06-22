@@ -1,0 +1,45 @@
+https://www.youtube.com/watch?v=tDX2ChhntD8&list=PLX2vGYjWbI0RX4rWxhg15UJ9GGf3tFLNQ
+
+https://opengameart.org/content/sprites-2
+https://opengameart.org/content/roguelike-monsters
+https://opengameart.org/content/roguelike-bosses
+https://opengameart.org/content/roguelikerpg-items
+https://opengameart.org/content/roguelike-dungeonworld-tiles
+https://opengameart.org/content/roguelikerpg-icons
+
+https://opengameart.org/content/meteor-animated-64x64
+https://opengameart.org/content/explosion-particles-sprite-atlas
+https://opengameart.org/content/smoke-fire-animated-particle-16x16
+https://opengameart.org/content/fire-spell-explosion
+
+https://opengameart.org/content/teleporter-effect
+
+https://opengameart.org/content/explosion-clouds
+https://opengameart.org/content/lightning-shock-spell
+https://opengameart.org/content/spell-sounds
+
+
+Effect , nice
+https://opengameart.org/users/cethiel
+
+
+OPEN SPIKE AND GET CODE RED GREEN BLUE, USE IT TO OPEN BOSS ROOM
+
+
+
+telegraph:
+	change color to red and gradually disappear
+	Target at floor
+	Cast bar
+	
+
+Summon Pillar, have to attack/stand at pillar for it not to explode
+
+Box Closing , l Player l from side and from above
+
+Move to player , 2 circle
+move to center,
+
+
+https://opengameart.org/content/isometric-hero-and-creatures
+used
