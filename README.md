@@ -2,9 +2,7 @@
 
 Game Programming (real name --Game Design) Final Project
 
-Playable link is here
-
-https://simmer.io/@IcianTun/rubyadventureplusplus
+Playable link is here: https://simmer.io/@IcianTun/rubyadventureplusplus
 
 This project extended from the tutorial [ Ruby's Adventure: 2D Beginner ] https://learn.unity.com/project/ruby-s-2d-rpg
 
